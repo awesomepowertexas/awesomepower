@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16]
+        node-version: [14]
 
     services:
       postgres:
@@ -41,4 +41,7 @@ jobs:
       - run: pnpm lint
 
       - name: Cypress tests
-        run: ...
+        uses: cypress-io/github-action@v2
+        with:
+          build: pnpm build
+          start: pnpm start

@@ -3,7 +3,7 @@
   "author": "Michael Hays",
   "license": "GPL-3.0",
   "engines": {
-    "node": ">=16",
+    "node": ">=14",
     "pnpm": ">=6"
   },
   "prisma": {
