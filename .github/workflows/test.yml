@@ -1,0 +1,44 @@
+name: test
+
+on:
+  - push
+
+env:
+  DATABASE_URL: postgresql://postgres:@localhost:5432/awesomepower
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16]
+
+    services:
+      postgres:
+        image: postgres:14.1
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: awesomepower
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.26.1
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm lint
+
+      - name: Cypress tests
+        run: ...

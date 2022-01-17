@@ -1,0 +1,18 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "component": {
+    "componentFolder": "src",
+    "supportFile": "cypress/support/component.ts",
+    "testFiles": "**/*.spec.{js,jsx,ts,tsx}"
+  },
+  "e2e": {
+    "supportFile": "cypress/support/e2e.ts"
+  },
+  "env": {
+    "codeCoverage": {
+      "url": "/api/__coverage__"
+    }
+  },
+  "viewportHeight": 1024,
+  "viewportWidth": 1440
+}

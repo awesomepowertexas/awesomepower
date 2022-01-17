@@ -1,0 +1,15 @@
+{
+  "[css][graphql][html][javascript][javascriptreact][json][jsonc][markdown][typescript][typescriptreact][vue][yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": true,
+    "source.fixAll": true,
+    "source.organizeImports": true
+  },
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "eslint.packageManager": "pnpm",
+  "git.autofetch": true,
+  "npm.packageManager": "pnpm"
+}
