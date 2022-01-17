@@ -1,14 +1,17 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model User {
-  id             String   @id @default(uuid()) @db.Uuid
+  id             String   @id @default(uuid())
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
   name           String?
@@ -21,7 +24,7 @@ model User {
 }
 
 model Session {
-  id                 String    @id @default(uuid()) @db.Uuid
+  id                 String    @id @default(uuid())
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   expiresAt          DateTime?
@@ -32,11 +35,11 @@ model Session {
   privateData        String?
 
   user   User?   @relation(fields: [userId], references: [id])
-  userId String? @db.Uuid
+  userId String?
 }
 
 model Token {
-  id          String    @id @default(uuid()) @db.Uuid
+  id          String    @id @default(uuid())
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   hashedToken String
@@ -45,7 +48,7 @@ model Token {
   sentTo      String
 
   user   User   @relation(fields: [userId], references: [id])
-  userId String @db.Uuid
+  userId String
 
   @@unique([hashedToken, type])
 }
@@ -55,19 +58,19 @@ enum TokenType {
 }
 
 model Tdu {
-  id        String    @id @default(uuid()) @db.Uuid
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  name      String    @unique
-  ptcName   String    @unique
-  charges   Decimal[] @db.Decimal(4, 2)
-  rates     Decimal[] @db.Decimal(6, 6)
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String   @unique
+  ptcName   String   @unique
+  charges   Json?
+  rates     Json?
 
   plans Plan[]
 }
 
 model Provider {
-  id        String   @id @default(uuid()) @db.Uuid
+  id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String   @unique
@@ -90,15 +93,15 @@ enum PlanLanguage {
 }
 
 model Plan {
-  id                   String       @id @default(uuid()) @db.Uuid
+  id                   String       @id @default(uuid())
   createdAt            DateTime     @default(now())
   updatedAt            DateTime     @updatedAt
   name                 String
   isActive             Boolean      @default(true)
   ptcIdKey             Int          @unique
-  eflNumbers           Decimal[]    @db.Decimal(10, 6)
-  chargeFunction       Json[]
-  rateFunction         Json[]
+  eflNumbers           Json?
+  chargeFunction       Json?
+  rateFunction         Json?
   lowUsageRate         Decimal?     @db.Decimal(4, 4)
   midUsageRate         Decimal?     @db.Decimal(4, 4)
   highUsageRate        Decimal?     @db.Decimal(4, 4)
@@ -121,7 +124,7 @@ model Plan {
   enrollPhone          String
 
   tdu        Tdu      @relation(fields: [tduId], references: [id])
-  tduId      String   @db.Uuid
+  tduId      String
   provider   Provider @relation(fields: [providerId], references: [id])
-  providerId String   @db.Uuid
+  providerId String
 }
