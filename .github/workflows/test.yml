@@ -4,7 +4,7 @@ on:
   - push
 
 env:
-  DATABASE_URL: mysql://root@localhost:3306/awesomepower
+  DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
   NODE_ENV: production
 
 jobs:
@@ -44,10 +44,10 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_DATABASE: awesomepower
-          MYSQL_PASSWORD:
-          MYSQL_USER: root
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_USER: user
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
