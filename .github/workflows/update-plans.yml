@@ -25,4 +25,11 @@ jobs:
         env:
           NODE_ENV: development
 
+      - name: Set up Google credentials
+        uses: google-github-actions/auth@v0.4.3
+        with:
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+
       - run: pnpm job -- updatePlans
+        env:
+          DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
