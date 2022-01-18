@@ -16,6 +16,7 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit --pretty",
+    "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push && prisma db seed",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
     "cypress:run": "rm -rf .nyc_output coverage || true && cypress run-ct && cypress run && pnpm job -- removeFullCoverage",
