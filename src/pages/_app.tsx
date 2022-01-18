@@ -1,26 +1,16 @@
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { loggerLink } from '@trpc/client/links/loggerLink'
 import { withTRPC } from '@trpc/next'
-import { Decimal } from 'decimal.js'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import { AppType } from 'next/dist/shared/lib/utils'
 import Head from 'next/head'
 import { ReactElement, ReactNode } from 'react'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import superjson from 'superjson'
 import DefaultLayout from '~/layouts/Default'
 import { AppRouter } from '~/server/routers/_app'
+import superjson from '~/utils/superjson'
 import '../styles/globals.css'
-
-superjson.registerCustom<Decimal, string>(
-  {
-    isApplicable: (v): v is Decimal => Decimal.isDecimal(v),
-    serialize: (v) => v.toJSON(),
-    deserialize: (v) => new Decimal(v),
-  },
-  'decimal.js',
-)
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (_page: ReactElement) => ReactNode
@@ -114,10 +104,6 @@ export default withTRPC<AppRouter>({
         }),
       ],
       transformer: superjson,
-      /**
-       * @link https://react-query.tanstack.com/reference/QueryClient
-       */
-      // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
     }
   },
 
