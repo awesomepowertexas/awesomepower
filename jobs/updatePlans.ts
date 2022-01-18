@@ -1,9 +1,9 @@
 import Prisma from '@prisma/client'
+import { Decimal } from '@prisma/client/runtime/index.js'
 import consola from 'consola'
 import lodash from 'lodash'
 import { PROVIDERS } from '../data/providers.js'
 import prisma from '../prisma/client.js'
-import { Decimal } from '../src/utils/node/types.js'
 import { getPdfText } from './utils/pdf.js'
 import {
   calculateRateEstimates,

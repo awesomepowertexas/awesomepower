@@ -1,4 +1,4 @@
-import faker from '@faker-js/faker'
+import faker from 'faker'
 import lodash from 'lodash'
 import { PROVIDERS } from '../data/providers.js'
 import { TDUS } from '../data/tdus.js'
