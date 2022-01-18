@@ -4,16 +4,41 @@ on:
   - push
 
 env:
-  DATABASE_URL: mysql://awesomepower:awesomepower@localhost:3306/awesomepower
+  DATABASE_URL: mysql://root@localhost:3306/awesomepower
   NODE_ENV: production
 
 jobs:
-  e2e:
+  component:
+    name: Cypress component tests
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6.26.1
+          run_install: true
+        env:
+          NODE_ENV: development
+
+      - name: Cypress component tests
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          command: pnpm cypress run-ct
+
+  e2e:
+    name: Cypress end-to-end tests
+    runs-on: ubuntu-latest
 
     services:
       mysql:
@@ -30,17 +55,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: 6.26.1
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
-
-      - run: pnpm install
+          run_install: true
         env:
           NODE_ENV: development
 
@@ -49,8 +75,10 @@ jobs:
       - run: pnpm typecheck
 
       - run: pnpm db:reset
+        env:
+          NODE_ENV: development
 
-      - name: Cypress tests
+      - name: Cypress end-to-end tests
         uses: cypress-io/github-action@v2
         with:
           install: false
