@@ -1,11 +1,11 @@
-import { PrismaClient } from '@prisma/client'
+import Prisma from '@prisma/client/index.js'
 
 declare global {
   // eslint-disable-next-line no-unused-vars
-  var prisma: PrismaClient
+  var prisma: Prisma.PrismaClient
 }
 
-const prisma = global.prisma ?? new PrismaClient()
+const prisma = global.prisma ?? new Prisma.PrismaClient()
 
 // Prevent multiple instances of Prisma Client in development
 if (process.env.NODE_ENV === 'development') {
