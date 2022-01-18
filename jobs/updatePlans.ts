@@ -67,9 +67,9 @@ export default async function updatePlans() {
     if (
       tdu &&
       provider &&
-      plan.kwh500.lessThan(new Decimal(1)) &&
-      plan.kwh1000.lessThan(new Decimal(1)) &&
-      plan.kwh2000.lessThan(new Decimal(1))
+      plan.kwh500.lessThan(1) &&
+      plan.kwh1000.lessThan(1) &&
+      plan.kwh2000.lessThan(1)
     ) {
       const existingPlan = existingPlans.find(
         (p) => p.ptcIdKey === plan.ptcIdKey,

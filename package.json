@@ -49,7 +49,7 @@
     "@cypress/code-coverage": "^3.9.12",
     "@cypress/react": "^5.12.1",
     "@cypress/webpack-dev-server": "^1.8.0",
-    "@faker-js/faker": "^6.0.0-alpha.3",
+    "@faker-js/faker": "github:faker-js/faker",
     "@google-cloud/vision": "^2.4.2",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@svgr/webpack": "^6.2.0",
