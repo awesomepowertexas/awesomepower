@@ -1,7 +1,7 @@
 import type { Plan, PlanLanguage, PlanRateType } from '@prisma/client'
+import { Decimal } from '@prisma/client/runtime/index.js'
 import axios from 'axios'
 import * as csv from 'csv'
-import { Decimal } from '../../src/utils/node/types.js'
 
 type PtcRawPlan = {
   '[idKey]': string

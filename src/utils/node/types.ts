@@ -1,6 +1,4 @@
-import Prisma from '.prisma/client/index.js'
-
-export class Decimal extends Prisma.Prisma.Decimal {}
+import { Decimal } from '@prisma/client/runtime/index.js'
 
 export type ChargeFunction = {
   kwh: Decimal

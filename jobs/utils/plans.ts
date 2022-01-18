@@ -1,9 +1,9 @@
+import { Decimal } from '@prisma/client/runtime/index.js'
 import lodash from 'lodash'
 import type {
   ChargeFunction,
   RateFunction,
 } from '../../src/utils/node/types.js'
-import { Decimal } from '../../src/utils/node/types.js'
 import { rSkewNorm } from './skewnorm.js'
 
 /**
