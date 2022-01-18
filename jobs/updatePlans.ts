@@ -25,6 +25,19 @@ export default async function updatePlans() {
    */
   consola.info('Updating plans in database...')
 
+  // Bulk prefetch to avoid tons of database queries
+  const tdus = await prisma.tdu.findMany()
+  const providers = await prisma.provider.findMany()
+  const existingPlans = await prisma.plan.findMany({
+    where: {
+      ptcIdKey: {
+        in: ptcPlans
+          .map((plan) => plan.ptcIdKey)
+          .filter((idKey) => Boolean(idKey)) as number[],
+      },
+    },
+  })
+
   for (const ptcPlan of ptcPlans) {
     const plan = lodash.cloneDeep(ptcPlan) as PtcPlan
 
@@ -33,12 +46,10 @@ export default async function updatePlans() {
     delete plan.providerName
     delete plan.rating
 
-    const tdu = await prisma.tdu.findUnique({
-      where: { ptcName: ptcPlan.tduName },
-    })
-    const provider = await prisma.provider.findUnique({
-      where: { ptcName: ptcPlan.providerName },
-    })
+    const tdu = tdus.find((tdu) => tdu.name === ptcPlan.tduName)
+    const provider = providers.find(
+      (provider) => provider.name === ptcPlan.providerName,
+    )
 
     // Misc factsUrl processing
     if (
@@ -56,42 +67,37 @@ export default async function updatePlans() {
     if (
       tdu &&
       provider &&
-      plan.kwh500 < new Decimal(1) &&
-      plan.kwh1000 < new Decimal(1) &&
-      plan.kwh2000 < new Decimal(1)
+      plan.kwh500.lessThan(new Decimal(1)) &&
+      plan.kwh1000.lessThan(new Decimal(1)) &&
+      plan.kwh2000.lessThan(new Decimal(1))
     ) {
-      const existingPlan = await prisma.plan.findFirst({
-        where: { ptcIdKey: plan.ptcIdKey },
-      })
+      const existingPlan = existingPlans.find(
+        (p) => p.ptcIdKey === plan.ptcIdKey,
+      )
 
-      const updatedPlan = await prisma.plan.upsert({
-        where: { ptcIdKey: plan.ptcIdKey },
-        update: {
-          ...plan,
-          eflNumbers: undefined,
-          chargeFunction: undefined,
-          rateFunction: undefined,
-        },
-        create: {
-          ...plan,
-          tduId: tdu.id,
-          providerId: provider.id,
-          eflNumbers: Prisma.Prisma.DbNull,
-          chargeFunction: Prisma.Prisma.DbNull,
-          rateFunction: Prisma.Prisma.DbNull,
-        },
-      })
+      if (!existingPlan) {
+        await prisma.plan.create({
+          data: {
+            ...plan,
+            tduId: tdu.id,
+            providerId: provider.id,
+            eflNumbers: Prisma.Prisma.DbNull,
+            chargeFunction: Prisma.Prisma.DbNull,
+            rateFunction: Prisma.Prisma.DbNull,
+          },
+        })
+      }
 
       // Reset EFL numbers if the plan terms are new
-      if (
-        existingPlan &&
-        (!updatedPlan.kwh500.equals(existingPlan.kwh500) ||
-          !updatedPlan.kwh1000.equals(existingPlan.kwh1000) ||
-          !updatedPlan.kwh2000.equals(existingPlan.kwh2000))
+      else if (
+        !plan.kwh500.equals(existingPlan.kwh500) ||
+        !plan.kwh1000.equals(existingPlan.kwh1000) ||
+        !plan.kwh2000.equals(existingPlan.kwh2000)
       ) {
         await prisma.plan.update({
-          where: { id: updatedPlan.id },
+          where: { ptcIdKey: plan.ptcIdKey },
           data: {
+            ...plan,
             eflNumbers: [],
             chargeFunction: [],
             rateFunction: [],
