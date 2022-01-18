@@ -46,4 +46,4 @@ jobs:
           install: false
           build: pnpm build
           start: pnpm start
-          wait-on: https://localhost:3000
+          wait-on: http://localhost:3000
