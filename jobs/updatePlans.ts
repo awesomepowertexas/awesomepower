@@ -1,7 +1,6 @@
-/* eslint @typescript-eslint/ban-ts-comment: off */
+import Prisma from '@prisma/client'
 import consola from 'consola'
 import lodash from 'lodash'
-import { JsonArray } from 'type-fest'
 import { PROVIDERS } from '../data/providers.js'
 import prisma from '../prisma/client.js'
 import { Decimal } from '../src/utils/node/types.js'
@@ -67,12 +66,19 @@ export default async function updatePlans() {
 
       const updatedPlan = await prisma.plan.upsert({
         where: { ptcIdKey: plan.ptcIdKey },
-        update: plan,
+        update: {
+          ...plan,
+          eflNumbers: undefined,
+          chargeFunction: undefined,
+          rateFunction: undefined,
+        },
         create: {
           ...plan,
           tduId: tdu.id,
           providerId: provider.id,
-          eflNumbers: [],
+          eflNumbers: Prisma.Prisma.DbNull,
+          chargeFunction: Prisma.Prisma.DbNull,
+          rateFunction: Prisma.Prisma.DbNull,
         },
       })
 
@@ -118,7 +124,7 @@ export default async function updatePlans() {
       isActive: true,
       language: 'English',
       eflNumbers: {
-        isEmpty: true,
+        equals: Prisma.Prisma.DbNull,
       },
     },
     include: {
@@ -135,10 +141,10 @@ export default async function updatePlans() {
   for (const [index, plan] of eflPlans.entries()) {
     process.stdout.write(`Reading plan ${index + 1} of ${eflPlans.length}\r`)
 
-    // Set eflNumbers to ['0'] so that we don't try to set it again
+    // Set eflNumbers to [] so that we don't try to set it again
     await prisma.plan.update({
       where: { id: plan.id },
-      data: { eflNumbers: [new Decimal('0')] },
+      data: { eflNumbers: [] },
     })
 
     try {
@@ -162,7 +168,9 @@ export default async function updatePlans() {
       if (eflNumbers) {
         await prisma.plan.update({
           where: { id: plan.id },
-          data: { eflNumbers },
+          data: {
+            eflNumbers: eflNumbers as unknown as Prisma.Prisma.JsonArray,
+          },
         })
       }
     }
@@ -178,6 +186,11 @@ export default async function updatePlans() {
       where: {
         isActive: true,
         language: 'English',
+        NOT: {
+          eflNumbers: {
+            equals: Prisma.Prisma.DbNull,
+          },
+        },
       },
       include: {
         tdu: true,
@@ -186,20 +199,20 @@ export default async function updatePlans() {
     })
   ).filter(
     (plan) =>
-      plan.eflNumbers.length > 1 &&
-      (lodash.isEmpty(plan.chargeFunction) ||
-        lodash.isEmpty(plan.rateFunction) ||
+      (plan.eflNumbers as Prisma.Prisma.JsonArray).length > 1 &&
+      (!plan.chargeFunction ||
+        !plan.rateFunction ||
         !kwhEstimatesMatchCostFunctions(
           plan.kwh500,
           plan.kwh1000,
           plan.kwh2000,
-          plan.chargeFunction.map((piece) => ({
+          (plan.chargeFunction as Prisma.Prisma.JsonArray).map((piece) => ({
             kwh: new Decimal((piece as { kwh: string; charge: string }).kwh),
             charge: new Decimal(
               (piece as { kwh: string; charge: string }).charge,
             ),
           })),
-          plan.rateFunction.map((piece) => ({
+          (plan.rateFunction as Prisma.Prisma.JsonArray).map((piece) => ({
             kwh: new Decimal((piece as { kwh: string; rate: string }).kwh),
             rate: new Decimal((piece as { kwh: string; rate: string }).rate),
           })),
@@ -211,15 +224,15 @@ export default async function updatePlans() {
       `Calculating plan ${index + 1} of ${costPlans.length}\r`,
     )
 
-    for (const tduCharge of plan.tdu.charges) {
-      for (const tduRate of plan.tdu.rates) {
+    for (const tduCharge of plan.tdu.charges as Prisma.Prisma.JsonArray) {
+      for (const tduRate of plan.tdu.rates as Prisma.Prisma.JsonArray) {
         for (const func of PROVIDERS.find((p) => p.name === plan.provider.name)
           ?.functions ?? []) {
           try {
             var { chargeFunction, rateFunction } = func(
-              plan.eflNumbers,
-              tduCharge,
-              tduRate,
+              plan.eflNumbers as unknown as Decimal[],
+              new Decimal(tduCharge as string),
+              new Decimal(tduRate as string),
             )
           } catch (error) {
             continue
@@ -237,8 +250,10 @@ export default async function updatePlans() {
             await prisma.plan.update({
               where: { id: plan.id },
               data: {
-                chargeFunction: chargeFunction as unknown as JsonArray,
-                rateFunction: rateFunction as unknown as JsonArray,
+                chargeFunction:
+                  chargeFunction as unknown as Prisma.Prisma.JsonArray,
+                rateFunction:
+                  rateFunction as unknown as Prisma.Prisma.JsonArray,
                 ...calculateRateEstimates(chargeFunction, rateFunction),
               },
             })

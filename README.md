@@ -1,7 +1,9 @@
+# Node
+
 Create `.env`
 
 ```
-echo "DATABASE_URL=postgresql://postgres:@localhost:5432/awesomepower
+echo "DATABASE_URL=mysql://root@localhost:3306/awesomepower
 GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
 NODE_ENV=development" >> .env
 ```
@@ -25,20 +27,27 @@ Install git hooks
 pnpm prepare
 ```
 
-Create database
+# Database
+
+Start database server
 
 ```
-createuser postgres -s
-createdb awesomepower
+mysqld_safe &
+```
+
+Migrate database
+
+```
+npx prisma db push
 ```
 
 Seed database
 
 ```
-pnpm db:reset
+npx prisma db seed
 ```
 
-Run local server
+# Run server
 
 ```
 pnpm dev

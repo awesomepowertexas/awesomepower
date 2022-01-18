@@ -6,7 +6,6 @@ generator client {
 datasource db {
   provider             = "mysql"
   url                  = env("DATABASE_URL")
-  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
@@ -36,6 +35,8 @@ model Session {
 
   user   User?   @relation(fields: [userId], references: [id])
   userId String?
+
+  @@index([userId])
 }
 
 model Token {
@@ -51,6 +52,7 @@ model Token {
   userId String
 
   @@unique([hashedToken, type])
+  @@index([userId])
 }
 
 enum TokenType {
@@ -127,4 +129,7 @@ model Plan {
   tduId      String
   provider   Provider @relation(fields: [providerId], references: [id])
   providerId String
+
+  @@index([tduId])
+  @@index([providerId])
 }

@@ -57,7 +57,6 @@ specifiers:
   superjson: ^1.8.0
   tailwindcss: ^3.0.15
   ts-node: ^10.4.0
-  type-fest: ^2.9.0
   typescript: 4.5.4
   use-immer: ^0.6.0
   webpack: ^5.66.0
@@ -127,7 +126,6 @@ devDependencies:
   prisma: 3.8.1
   tailwindcss: 3.0.15_f98f8cb1d4c2734d9765edb689db6e16
   ts-node: 10.4.0_faf01e1d5a40372a98081522dcafc186
-  type-fest: 2.9.0
   typescript: 4.5.4
   webpack: 5.66.0
   webpack-dev-server: 4.7.3_webpack@5.66.0
@@ -9339,11 +9337,6 @@ packages:
   /type-fest/0.8.1:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
-    dev: true
-
-  /type-fest/2.9.0:
-    resolution: {integrity: sha512-uC0hJKi7eAGXUJ/YKk53RhnKxMwzHWgzf4t92oz8Qez28EBgVTfpDTB59y9hMYLzc/Wl85cD7Tv1hLZZoEJtrg==}
-    engines: {node: '>=12.20'}
     dev: true
 
   /type-is/1.6.18:
