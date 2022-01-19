@@ -1,24 +1,24 @@
-import { Prisma } from '@prisma/client'
+import { Decimal } from '@prisma/client/runtime/index.js'
 import { calculatePlanCost, kwhEstimatesMatchCostFunctions } from '../plans'
 
 const chargeFunction = [
   {
-    kwh: new Prisma.Decimal('0'),
-    charge: new Prisma.Decimal('20'),
+    kwh: new Decimal('0'),
+    charge: new Decimal('20'),
   },
   {
-    kwh: new Prisma.Decimal('1000'),
-    charge: new Prisma.Decimal('-10'),
+    kwh: new Decimal('1000'),
+    charge: new Decimal('-10'),
   },
 ]
 const rateFunction = [
   {
-    kwh: new Prisma.Decimal('0'),
-    rate: new Prisma.Decimal('0.1'),
+    kwh: new Decimal('0'),
+    rate: new Decimal('0.1'),
   },
   {
-    kwh: new Prisma.Decimal('500'),
-    rate: new Prisma.Decimal('0.05'),
+    kwh: new Decimal('500'),
+    rate: new Decimal('0.05'),
   },
 ]
 
@@ -26,7 +26,7 @@ describe('calculatePlanCost', () => {
   it('calculates correctly', () => {
     expect(
       calculatePlanCost(
-        new Prisma.Decimal('100'),
+        new Decimal('100'),
         chargeFunction,
         rateFunction,
       ).toNumber(),
@@ -38,9 +38,9 @@ describe('kwhEstimatesMatchCostFunctions', () => {
   it('compares correctly', () => {
     expect(
       kwhEstimatesMatchCostFunctions(
-        new Prisma.Decimal('30'),
-        new Prisma.Decimal('50'),
-        new Prisma.Decimal('60'),
+        new Decimal('30'),
+        new Decimal('50'),
+        new Decimal('60'),
         chargeFunction,
         rateFunction,
       ),

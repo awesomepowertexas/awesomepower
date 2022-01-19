@@ -1,12 +1,12 @@
-import { Prisma } from '@prisma/client'
+import Prisma from '@prisma/client'
 
 // https://4changeenergy.com/tdu-charges
 // https://electricityplans.com/texas/tdu-delivery-charges/
 export const TDUS: {
   name: string
   ptcName: string
-  charges: Prisma.JsonArray
-  rates: Prisma.JsonArray
+  charges: Prisma.Prisma.JsonArray
+  rates: Prisma.Prisma.JsonArray
 }[] = [
   {
     name: 'AEP Central',
