@@ -84,10 +84,10 @@ export function kwhEstimatesMatchCostFunctions(
 
   const precision = new Decimal('0.0015')
 
-  return Boolean(
+  return (
     calculated500.minus(kwh500).abs().lessThanOrEqualTo(precision) &&
-      calculated1000.minus(kwh1000).abs().lessThanOrEqualTo(precision) &&
-      calculated2000.minus(kwh2000).abs().lessThanOrEqualTo(precision),
+    calculated1000.minus(kwh1000).abs().lessThanOrEqualTo(precision) &&
+    calculated2000.minus(kwh2000).abs().lessThanOrEqualTo(precision)
   )
 }
 

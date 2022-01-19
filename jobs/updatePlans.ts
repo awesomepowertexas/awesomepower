@@ -236,7 +236,7 @@ export default async function updatePlans() {
           ?.functions ?? []) {
           try {
             var { chargeFunction, rateFunction } = func(
-              plan.eflNumbers as unknown as Decimal[],
+              (plan.eflNumbers as string[]).map((num) => new Decimal(num)),
               new Decimal(tduCharge as string),
               new Decimal(tduRate as string),
             )
