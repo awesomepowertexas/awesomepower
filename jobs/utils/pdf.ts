@@ -6,7 +6,7 @@ import pdfjs from 'pdfjs-dist/legacy/build/pdf.js'
 
 type CanvasAndContext = {
   canvas: Canvas.Canvas
-  context: Canvas.NodeCanvasRenderingContext2D
+  context: Canvas.CanvasRenderingContext2D
 }
 
 /**

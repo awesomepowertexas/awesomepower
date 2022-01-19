@@ -4,7 +4,6 @@ on:
   - push
 
 env:
-  CYPRESS_CACHE_FOLDER: cypress/cache
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
   NODE_ENV: production
 
@@ -21,8 +20,8 @@ jobs:
         with:
           path: |
             ~/.pnpm-store
-            cypress/cache
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/.github/workflows/test.yml') }}
           restore-keys: |
             ${{ runner.os }}-
 
@@ -81,8 +80,8 @@ jobs:
         with:
           path: |
             ~/.pnpm-store
-            cypress/cache
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/.github/workflows/test.yml') }}
           restore-keys: |
             ${{ runner.os }}-
 
