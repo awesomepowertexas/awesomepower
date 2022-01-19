@@ -1,2 +1,2 @@
-import '../plugins/tailwind'
+// import '../plugins/tailwind'
 import './index'
