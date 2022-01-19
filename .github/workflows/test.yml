@@ -4,6 +4,7 @@ on:
   - push
 
 env:
+  CYPRESS_CACHE_FOLDER: cypress/cache
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
   NODE_ENV: production
 
@@ -18,7 +19,9 @@ jobs:
       - name: Cache pnpm modules
         uses: actions/cache@v2
         with:
-          path: ~/.pnpm-store
+          path: |
+            ~/.pnpm-store
+            cypress/cache
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
@@ -76,7 +79,9 @@ jobs:
       - name: Cache pnpm modules
         uses: actions/cache@v2
         with:
-          path: ~/.pnpm-store
+          path: |
+            ~/.pnpm-store
+            cypress/cache
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-
