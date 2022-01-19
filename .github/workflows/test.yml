@@ -88,10 +88,6 @@ jobs:
         env:
           NODE_ENV: development
 
-      - run: pnpm lint
-
-      - run: pnpm typecheck
-
       - name: Cypress end-to-end tests
         uses: cypress-io/github-action@v2
         with:
