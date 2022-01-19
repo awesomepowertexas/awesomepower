@@ -47,12 +47,11 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
             {plan.term} month term · {plan.percentRenewable}% renewable
           </p>
 
-          <p
-            v-if="plan.is_new_customer"
-            className="text-sm text-orange-500 mt-2"
-          >
-            <i>New customers only</i>
-          </p>
+          {plan.isNewCustomer && (
+            <p className="text-sm text-orange-500 mt-2">
+              <i>New customers only</i>
+            </p>
+          )}
 
           <div className="flex-grow" />
 
@@ -167,12 +166,11 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
               {plan.percentRenewable}% renewable
             </p>
 
-            <p
-              v-if="plan.is_new_customer"
-              className="text-sm text-orange-500 mt-3"
-            >
-              <i>New customers only</i>
-            </p>
+            {plan.isNewCustomer && (
+              <p className="text-sm text-orange-500 mt-3">
+                <i>New customers only</i>
+              </p>
+            )}
 
             <div className="flex mt-3">
               <a

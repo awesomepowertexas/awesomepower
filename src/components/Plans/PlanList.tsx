@@ -1,6 +1,6 @@
 import lodash from 'lodash'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { PlanFilter } from '~/pages/plans/[zipCode]'
 import { trpc } from '~/utils/trpc'
 import type { OrderBy } from '~/utils/types'
@@ -26,7 +26,6 @@ export default function PlanList({ planFilter }: Props) {
     setPlans(plansQuery.data)
   }
 
-  const planListRef = useRef(null)
   const [orderBy, setOrderBy] = useState<OrderBy>('mid')
 
   const filteredPlans = lodash
@@ -53,7 +52,7 @@ export default function PlanList({ planFilter }: Props) {
     })
 
   return (
-    <div className="relative">
+    <div>
       {plansQuery.isLoading ? (
         <div className="w-full flex justify-center">
           <LoadingSpinner size={50} className="text-blue-500 mt-8" />
@@ -70,13 +69,12 @@ export default function PlanList({ planFilter }: Props) {
         </div>
       ) : (
         <div
-          ref={planListRef}
           key={`plans${filteredPlans.length}${
             filteredPlans.map((plan) => plan.ptcIdKey)[0]
           }`}
           className="w-full flex flex-col"
         >
-          <p className="text-gray-700 text-xs mt-4 -mb-4">
+          <p className="text-gray-700 text-xs my-4">
             All rates shown are estimates
           </p>
 
