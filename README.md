@@ -1,4 +1,15 @@
-# Node
+# Stack
+
+- Language: [TypeScript](https://www.typescriptlang.org/)
+- Framework: [Next.js](https://github.com/vercel/next.js)
+- API: [tRPC](https://github.com/trpc/trpc)
+- Auth: [NextAuth.js](https://github.com/nextauthjs/next-auth)
+- Styling: [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
+- ORM: [Prisma](https://github.com/prisma/prisma)
+- Database: [PlanetScale](https://planetscale.com/)
+- Hosting: [Vercel](https://vercel.com/)
+
+# Setup
 
 Create `.env`
 
@@ -7,6 +18,8 @@ echo "DATABASE_URL=mysql://root@localhost:3306/awesomepower
 GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
 NODE_ENV=development" >> .env
 ```
+
+## Node
 
 Install pnpm
 
@@ -27,24 +40,24 @@ Install git hooks
 pnpm prepare
 ```
 
-# Database
+## Database
 
 Start database server
 
 ```
-mysqld_safe &
+mysqld_safe
 ```
 
 Migrate database
 
 ```
-npx prisma db push
+pnpm exec prisma db push
 ```
 
 Seed database
 
 ```
-npx prisma db seed
+pnpm db:reset
 ```
 
 # Run server
