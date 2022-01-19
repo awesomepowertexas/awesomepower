@@ -2,7 +2,7 @@ name: Update Plans
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   update-plans:
