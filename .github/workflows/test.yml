@@ -1,4 +1,4 @@
-name: test
+name: Run Tests
 
 on:
   - push
@@ -52,7 +52,7 @@ jobs:
       # https://github.com/cypress-io/github-action#parallel
       fail-fast: false
       matrix:
-        containers: [1, 2, 3]
+        containers: [1, 2]
 
     services:
       mysql:
@@ -91,10 +91,6 @@ jobs:
       - run: pnpm lint
 
       - run: pnpm typecheck
-
-      - run: pnpm db:reset
-        env:
-          NODE_ENV: development
 
       - name: Cypress end-to-end tests
         uses: cypress-io/github-action@v2

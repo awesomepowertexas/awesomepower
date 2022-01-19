@@ -1,15 +1,7 @@
-import registerIntercepts from './.intercepts'
-
 describe('Home', () => {
-  beforeEach(() => {
-    registerIntercepts()
-
-    cy.seed()
-
-    cy.visit('/')
-  })
-
   it('navigates', () => {
+    cy.visit('/')
+
     cy.get('h1').should('contain', 'Find a cheap')
 
     // FAQs
@@ -40,6 +32,8 @@ describe('Home', () => {
   })
 
   it('finds plans', () => {
+    cy.visit('/')
+
     // Invalid zip
     cy.get('input[data-cypress=find-plans]').type('{enter}abcd12345')
 
@@ -71,3 +65,5 @@ describe('Home', () => {
     cy.location('pathname').should('eq', '/plans/75234')
   })
 })
+
+export {}

@@ -1,18 +1,10 @@
 import '@cypress/code-coverage/support'
-import './commands'
+import registerIntercepts from 'cypress/integration/.intercepts'
 
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace, no-unused-vars
-  namespace Cypress {
-    interface Chainable {
-      /**
-       * Custom command to seed the database.
-       * @example cy.seed()
-       */
-      seed(): Chainable<Element>
-    }
-  }
-}
+beforeEach(() => {
+  registerIntercepts()
+  cy.exec('NODE_ENV=development pnpm db:reset')
+})
 
 after(() => {
   cy.exec('pnpm job -- removeFullCoverage')
