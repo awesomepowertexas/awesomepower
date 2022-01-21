@@ -19,7 +19,7 @@
     "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push && prisma db seed",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
-    "cypress:run": "rm -rf .nyc_output coverage || true && cypress run-ct && cypress run && pnpm job -- removeFullCoverage",
+    "cypress:run": "pnpm job -- coverage/resetCoverage && cypress run-ct && cypress run && nyc report && pnpm job -- coverage/removeFullCoverage",
     "job": "node --loader ts-node/esm jobs/_runJob.ts"
   },
   "dependencies": {
@@ -68,6 +68,7 @@
     "consola": "^2.15.3",
     "csv": "^6.0.5",
     "cypress": "^9.3.0",
+    "dotenv": "^14.2.0",
     "eslint": "8.7.0",
     "eslint-config-next": "12.0.8",
     "eslint-config-prettier": "^8.3.0",

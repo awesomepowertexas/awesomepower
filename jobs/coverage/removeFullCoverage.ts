@@ -4,12 +4,7 @@ import { JSDOM } from 'jsdom'
 import path from 'path'
 
 export default function removeFullCoverage() {
-  const filePath = path.resolve(
-    path.dirname(''),
-    '..',
-    'coverage',
-    'index.html',
-  )
+  const filePath = path.resolve(path.dirname(''), 'coverage', 'index.html')
 
   fs.readFile(filePath, 'utf8', (error, html) => {
     const { window } = new JSDOM(html)

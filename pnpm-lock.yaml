@@ -34,6 +34,7 @@ specifiers:
   csv: ^6.0.5
   cypress: ^9.3.0
   decimal.js: ^10.3.1
+  dotenv: ^14.2.0
   eslint: 8.7.0
   eslint-config-next: 12.0.8
   eslint-config-prettier: ^8.3.0
@@ -110,6 +111,7 @@ devDependencies:
   consola: 2.15.3
   csv: 6.0.5
   cypress: 9.3.0
+  dotenv: 14.2.0
   eslint: 8.7.0
   eslint-config-next: 12.0.8_1523953a9b79c75d06c9813feeadac5d
   eslint-config-prettier: 8.3.0_eslint@8.7.0
@@ -4513,6 +4515,11 @@ packages:
       tslib: 2.3.1
     dev: true
 
+  /dotenv/14.2.0:
+    resolution: {integrity: sha512-05POuPJyPpO6jqzTNweQFfAyMSD4qa4lvsMOWyTRTdpHKy6nnnN+IYWaXF+lHivhBH/ufDKlR4IWCAN3oPnHuw==}
+    engines: {node: '>=12'}
+    dev: true
+
   /duplexer2/0.1.4:
     resolution: {integrity: sha1-ixLauHjA1p4+eJEFFmKjL8a93ME=}
     dependencies:
@@ -7363,7 +7370,7 @@ packages:
       foreground-child: 2.0.0
       get-package-type: 0.1.0
       glob: 7.2.0
-      istanbul-lib-coverage: 3.0.0
+      istanbul-lib-coverage: 3.2.0
       istanbul-lib-hook: 3.0.0
       istanbul-lib-instrument: 4.0.3
       istanbul-lib-processinfo: 2.0.2

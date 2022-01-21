@@ -1,15 +1,18 @@
+[![Awesome Power](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/68w8zv/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/68w8zv/runs)
+[![codecov](https://codecov.io/gh/awesomepowertexas/awesomepower/branch/main/graph/badge.svg?token=0AXhZNZUGy)](https://codecov.io/gh/awesomepowertexas/awesomepower)
+
 # Stack
 
 | Component         | Tool                                                        |
 | ----------------- | ----------------------------------------------------------- |
 | Language          | [TypeScript](https://www.typescriptlang.org/)               |
 | Framework         | [Next.js](https://github.com/vercel/next.js)                |
+| ORM               | [Prisma](https://github.com/prisma/prisma)                  |
 | API               | [tRPC](https://github.com/trpc/trpc)                        |
 | Schema Validation | [Zod](https://github.com/colinhacks/zod)                    |
 | State Management  | [Zustand](https://github.com/pmndrs/zustand)                |
 | Auth              | [NextAuth.js](https://github.com/nextauthjs/next-auth)      |
 | Styling           | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) |
-| ORM               | [Prisma](https://github.com/prisma/prisma)                  |
 | Database          | [PlanetScale](https://planetscale.com/)                     |
 | Hosting           | [Vercel](https://vercel.com/)                               |
 
@@ -36,12 +39,6 @@ Install dependencies
 
 ```
 pnpm install
-```
-
-Install git hooks
-
-```
-pnpm prepare
 ```
 
 ## Database

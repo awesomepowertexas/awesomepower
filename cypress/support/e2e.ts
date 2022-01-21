@@ -3,5 +3,5 @@ import './index'
 
 beforeEach(() => {
   registerIntercepts()
-  cy.exec('NODE_ENV=development pnpm db:reset')
+  cy.exec('pnpm db:reset')
 })
