@@ -42,8 +42,8 @@ function FindPlans() {
   }
 
   return (
-    <div className="mx-auto mt-16 md:mt-20 w-full max-w-md bg-blue-900 text-center rounded-lg shadow p-5">
-      <p className="h-10 flex items-center justify-center font-solway font-bold text-white md:text-xl uppercase">
+    <div className="mx-auto mt-16 w-full max-w-md rounded-lg bg-blue-900 p-5 text-center shadow md:mt-20">
+      <p className="flex h-10 items-center justify-center font-solway font-bold uppercase text-white md:text-xl">
         View plans in your zip code
       </p>
 
@@ -54,22 +54,22 @@ function FindPlans() {
         onKeyPress={handleKeyPress}
         disabled={plansQuery.isLoading}
         type="text"
-        className="my-4 w-56 h-16 rounded text-3xl text-center text-gray-800 font-solway font-light"
+        className="my-4 h-16 w-56 rounded text-center font-solway text-3xl font-light text-gray-800"
         placeholder="12345"
         maxLength={5}
         data-cypress="find-plans"
       />
 
-      <div className="h-10 flex items-center justify-center">
+      <div className="flex h-10 items-center justify-center">
         {zipCode.length === 5 &&
           (plansQuery.isLoading ? (
             <LoadingSpinner className="text-white" />
           ) : plansQuery.isError ? (
-            <p className="font-bold tracking-widest text-red-300 text-xs uppercase pb-1">
+            <p className="pb-1 text-xs font-bold uppercase tracking-widest text-red-300">
               Sorry, something went wrong
             </p>
           ) : plansQuery.data?.length === 0 ? (
-            <p className="font-bold tracking-widest text-red-300 text-xs uppercase pb-1">
+            <p className="pb-1 text-xs font-bold uppercase tracking-widest text-red-300">
               No plans found for this zip code
             </p>
           ) : (

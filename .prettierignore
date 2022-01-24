@@ -1,0 +1,5 @@
+/.next/
+/.nyc_output/
+/.vercel/
+/coverage/
+pnpm-lock.yaml

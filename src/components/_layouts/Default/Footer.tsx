@@ -20,13 +20,13 @@ function Footer() {
   }
 
   return (
-    <footer className="md:h-40 bg-gray-900 text-white text-sm p-10">
-      <div className="h-full max-w-4xl flex flex-col gap-6 md:flex-row md:items-center justify-between mx-auto">
-        <div className="flex-1 flex items-center gap-4 text-3xl">
+    <footer className="bg-gray-900 p-10 text-sm text-white md:h-40">
+      <div className="mx-auto flex h-full max-w-4xl flex-col justify-between gap-6 md:flex-row md:items-center">
+        <div className="flex flex-1 items-center gap-4 text-3xl">
           <a
             href="https://www.facebook.com/AwesomePowerTexas/"
             target="_blank"
-            className="hover:text-gray-500 transition"
+            className="transition hover:text-gray-500"
             rel="noreferrer"
           >
             <FontAwesomeIcon icon={faFacebookSquare} />
@@ -35,7 +35,7 @@ function Footer() {
           <a
             href="https://twitter.com/AwesomePowerTX"
             target="_blank"
-            className="hover:text-gray-500 transition"
+            className="transition hover:text-gray-500"
             rel="noreferrer"
           >
             <FontAwesomeIcon icon={faTwitterSquare} />
@@ -44,35 +44,35 @@ function Footer() {
           <a
             href="https://github.com/awesomepowertexas/awesomepower"
             target="_blank"
-            className="hover:text-gray-500 transition"
+            className="transition hover:text-gray-500"
             rel="noreferrer"
           >
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
 
-        <div className="flex-grow flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-center md:gap-8">
+        <div className="flex flex-grow flex-col items-start gap-4 md:flex-row md:items-center md:justify-center md:gap-8">
           <Link href="/">
-            <a className="font-bold hover:text-gray-500 transition">Home</a>
+            <a className="font-bold transition hover:text-gray-500">Home</a>
           </Link>
 
           <button
-            className="cursor-pointer font-bold hover:text-gray-500 transition"
+            className="cursor-pointer font-bold transition hover:text-gray-500"
             onClick={navigateToFaqs}
           >
             FAQs
           </button>
 
           <Link href="/privacy">
-            <a className="font-bold hover:text-gray-500 transition">Privacy</a>
+            <a className="font-bold transition hover:text-gray-500">Privacy</a>
           </Link>
 
           <Link href="/terms">
-            <a className="font-bold hover:text-gray-500 transition">Terms</a>
+            <a className="font-bold transition hover:text-gray-500">Terms</a>
           </Link>
         </div>
 
-        <div className="flex-1 text-2xs text-gray-500 md:text-right">
+        <div className="text-2xs flex-1 text-gray-500 md:text-right">
           Copyright © {new Date().getFullYear()}
           <br />
           Michael Hays

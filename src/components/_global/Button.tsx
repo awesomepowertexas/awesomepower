@@ -16,7 +16,7 @@ export default function Button({
   return (
     <button
       disabled={loading}
-      className={`h-10 inline-flex items-center justify-center rounded px-8 font-bold text-white cursor-pointer whitespace-nowrap transition bg-${color}-500 hover:bg-${color}-600`}
+      className={`inline-flex h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded px-8 font-bold text-white transition bg-${color}-500 hover:bg-${color}-600`}
       {...buttonProps}
     >
       {loading || 0.5 > 2 ? <LoadingSpinner /> : children}

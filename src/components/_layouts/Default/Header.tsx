@@ -15,8 +15,8 @@ function Header() {
   }
 
   return (
-    <header className="absolute w-full h-12 md:h-24 flex items-end px-5 md:px-12">
-      <div className="z-20 w-full max-w-6xl flex items-center justify-between mx-auto">
+    <header className="absolute flex h-12 w-full items-end px-5 md:h-24 md:px-12">
+      <div className="z-20 mx-auto flex w-full max-w-6xl items-center justify-between">
         <Link href="/">
           <a className="relative w-48 md:w-80" data-cypress="logo">
             <Logo />
@@ -24,7 +24,7 @@ function Header() {
         </Link>
 
         <span
-          className="cursor-pointer font-bold text-sm hover:text-blue-700 mb-1"
+          className="mb-1 cursor-pointer text-sm font-bold hover:text-blue-700"
           onClick={navigateToFaqs}
         >
           FAQs

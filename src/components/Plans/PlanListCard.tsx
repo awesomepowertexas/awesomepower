@@ -21,12 +21,12 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
   return (
     <div
       data-cypress="plan-card"
-      className="bg-white rounded shadow p-4 md:p-6"
+      className="rounded bg-white p-4 shadow md:p-6"
     >
       {/* Desktop */}
       <div className="hidden md:flex">
-        <div className="w-40 flex-shrink-0 flex flex-col items-center">
-          <div className="relative w-40 h-24 mt-4">
+        <div className="flex w-40 flex-shrink-0 flex-col items-center">
+          <div className="relative mt-4 h-24 w-40">
             <Image
               src={`/provider-images/${plan.provider.name}.png`}
               alt={plan.provider.name}
@@ -40,29 +40,29 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
           </div>
         </div>
 
-        <div className="flex-grow flex flex-col ml-4">
-          <p className="font-bold leading-tight overflow-hidden">{plan.name}</p>
+        <div className="ml-4 flex flex-grow flex-col">
+          <p className="overflow-hidden font-bold leading-tight">{plan.name}</p>
 
-          <p className="text-sm text-gray-700 mt-2">
+          <p className="mt-2 text-sm text-gray-700">
             {plan.term} month term · {plan.percentRenewable}% renewable
           </p>
 
           {plan.isNewCustomer && (
-            <p className="text-sm text-orange-500 mt-2">
+            <p className="mt-2 text-sm text-orange-500">
               <i>New customers only</i>
             </p>
           )}
 
           <div className="flex-grow" />
 
-          <div className="flex items-center mt-4">
+          <div className="mt-4 flex items-center">
             <a href={plan.enrollUrl} target="_blank" rel="noreferrer">
               <Button color="green">Sign up</Button>
             </a>
 
             <a
               href={plan.factsUrl}
-              className="text-blue-600 ml-6"
+              className="ml-6 text-blue-600"
               target="_blank"
               rel="noreferrer"
             >
@@ -71,7 +71,7 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
 
             <a
               href={plan.termsUrl}
-              className="text-blue-600 ml-6"
+              className="ml-6 text-blue-600"
               target="_blank"
               rel="noreferrer"
             >
@@ -80,11 +80,11 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
           </div>
         </div>
 
-        <div className="w-64 flex items-center ml-4">
-          <div className="flex-1 flex flex-col items-center">
+        <div className="ml-4 flex w-64 items-center">
+          <div className="flex flex-1 flex-col items-center">
             <div className="flex items-center">
               <p
-                className="cursor-pointer font-bold text-gray-500 text-xs uppercase"
+                className="cursor-pointer text-xs font-bold uppercase text-gray-500"
                 onClick={() => {
                   setOrderBy(orderBy === 'low' ? 'mid' : 'low')
                 }}
@@ -92,7 +92,7 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
                 {orderBy === 'low' ? 'mid' : 'low'}
               </p>
 
-              <p className="font-solway font-light text-2xl ml-2">
+              <p className="ml-2 font-solway text-2xl font-light">
                 {(
                   (orderBy === 'low'
                     ? plan.midUsageRate!.toNumber()
@@ -102,9 +102,9 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
               </p>
             </div>
 
-            <div className="flex items-center mt-4">
+            <div className="mt-4 flex items-center">
               <p
-                className="cursor-pointer font-bold text-gray-500 text-xs uppercase"
+                className="cursor-pointer text-xs font-bold uppercase text-gray-500"
                 onClick={() => {
                   setOrderBy(orderBy === 'high' ? 'mid' : 'high')
                 }}
@@ -112,7 +112,7 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
                 {orderBy === 'high' ? 'mid' : 'high'}
               </p>
 
-              <p className="font-solway font-light text-2xl ml-2">
+              <p className="ml-2 font-solway text-2xl font-light">
                 {(
                   (orderBy === 'high'
                     ? plan.midUsageRate!.toNumber()
@@ -123,29 +123,29 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col items-center">
-            <p className="font-bold text-blue-700 text-xs uppercase">
+          <div className="flex flex-1 flex-col items-center">
+            <p className="text-xs font-bold uppercase text-blue-700">
               {orderBy}
             </p>
 
-            <p className="font-solway font-light text-5xl">
+            <p className="font-solway text-5xl font-light">
               {(mainUsageRate!.toNumber() * 100).toFixed(1)}¢
             </p>
 
-            <p className="font-bold text-gray-500 text-xs uppercase">per kWh</p>
+            <p className="text-xs font-bold uppercase text-gray-500">per kWh</p>
           </div>
         </div>
       </div>
 
       {/* Mobile */}
-      <div className="md:hidden flex flex-col">
+      <div className="flex flex-col md:hidden">
         <div className="text-center">
-          <p className="font-bold text-lg">{plan.name}</p>
+          <p className="text-lg font-bold">{plan.name}</p>
         </div>
 
-        <div className="flex items-center mt-6">
-          <div className="flex-1 flex flex-col items-center">
-            <div className="relative w-40 h-24">
+        <div className="mt-6 flex items-center">
+          <div className="flex flex-1 flex-col items-center">
+            <div className="relative h-24 w-40">
               <Image
                 src={`/provider-images/${plan.provider.name}.png`}
                 alt={plan.provider.name}
@@ -159,20 +159,20 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
             </div>
           </div>
 
-          <div className="flex-1 text-sm ml-6">
+          <div className="ml-6 flex-1 text-sm">
             <p className="text-gray-700">{plan.term} month term</p>
 
-            <p className="text-gray-700 mt-3">
+            <p className="mt-3 text-gray-700">
               {plan.percentRenewable}% renewable
             </p>
 
             {plan.isNewCustomer && (
-              <p className="text-sm text-orange-500 mt-3">
+              <p className="mt-3 text-sm text-orange-500">
                 <i>New customers only</i>
               </p>
             )}
 
-            <div className="flex mt-3">
+            <div className="mt-3 flex">
               <a
                 href={plan.factsUrl}
                 className="text-blue-600"
@@ -182,7 +182,7 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
                 Facts
               </a>
 
-              <span className="text-gray-600 mx-2">·</span>
+              <span className="mx-2 text-gray-600">·</span>
 
               <a
                 href={plan.termsUrl}
@@ -196,11 +196,11 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
           </div>
         </div>
 
-        <div className="flex items-center mt-8">
-          <div className="flex-1 flex flex-col items-center">
+        <div className="mt-8 flex items-center">
+          <div className="flex flex-1 flex-col items-center">
             <div className="flex items-center">
               <p
-                className="cursor-pointer font-bold text-gray-500 text-xs uppercase"
+                className="cursor-pointer text-xs font-bold uppercase text-gray-500"
                 onClick={() => {
                   setOrderBy(orderBy === 'low' ? 'mid' : 'low')
                 }}
@@ -208,7 +208,7 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
                 {orderBy === 'low' ? 'mid' : 'low'}
               </p>
 
-              <p className="font-solway font-light text-2xl ml-2">
+              <p className="ml-2 font-solway text-2xl font-light">
                 {(
                   (orderBy === 'low'
                     ? plan.midUsageRate!.toNumber()
@@ -218,15 +218,15 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
               </p>
             </div>
 
-            <div className="flex items-center mt-4">
+            <div className="mt-4 flex items-center">
               <p
-                className="cursor-pointer font-bold text-gray-500 text-xs uppercase"
+                className="cursor-pointer text-xs font-bold uppercase text-gray-500"
                 onClick={() => setOrderBy(orderBy === 'high' ? 'mid' : 'high')}
               >
                 {orderBy === 'high' ? 'mid' : 'high'}
               </p>
 
-              <p className="font-solway font-light text-2xl ml-2">
+              <p className="ml-2 font-solway text-2xl font-light">
                 {(
                   (orderBy === 'high'
                     ? plan.midUsageRate!.toNumber()
@@ -237,16 +237,16 @@ export default function PlanListCard({ plan, orderBy, setOrderBy }: Props) {
             </div>
           </div>
 
-          <div className="flex-1 flex flex-col items-center">
-            <p className="font-bold text-blue-700 text-xs uppercase">
+          <div className="flex flex-1 flex-col items-center">
+            <p className="text-xs font-bold uppercase text-blue-700">
               {orderBy}
             </p>
 
-            <p className="font-solway font-light text-5xl">
+            <p className="font-solway text-5xl font-light">
               {(mainUsageRate!.toNumber() * 100).toFixed(1)}¢
             </p>
 
-            <p className="font-bold text-gray-500 text-xs uppercase">per kWh</p>
+            <p className="text-xs font-bold uppercase text-gray-500">per kWh</p>
           </div>
         </div>
 

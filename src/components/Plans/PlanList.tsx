@@ -54,8 +54,8 @@ export default function PlanList({ planFilter }: Props) {
   return (
     <div>
       {plansQuery.isLoading ? (
-        <div className="w-full flex justify-center">
-          <LoadingSpinner size={50} className="text-blue-500 mt-8" />
+        <div className="flex w-full justify-center">
+          <LoadingSpinner size={50} className="mt-8 text-blue-500" />
         </div>
       ) : filteredPlans.length === 0 ? (
         <div
@@ -63,7 +63,7 @@ export default function PlanList({ planFilter }: Props) {
           key="no-plans"
           className="w-full"
         >
-          <p className="text-center text-gray-700 mt-8">
+          <p className="mt-8 text-center text-gray-700">
             No plans found for the given filters
           </p>
         </div>
@@ -72,9 +72,9 @@ export default function PlanList({ planFilter }: Props) {
           key={`plans${filteredPlans.length}${
             filteredPlans.map((plan) => plan.ptcIdKey)[0]
           }`}
-          className="w-full flex flex-col"
+          className="flex w-full flex-col"
         >
-          <p className="text-gray-700 text-xs my-4">
+          <p className="my-4 text-xs text-gray-700">
             All rates shown are estimates
           </p>
 

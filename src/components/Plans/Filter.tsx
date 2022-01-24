@@ -10,11 +10,11 @@ interface Props {
 export default function Filter({ planFilter, setPlanFilter }: Props) {
   return (
     <>
-      <h2 className="text-center font-bold text-sm text-blue-900 uppercase tracking-widest mt-4 md:mt-8">
+      <h2 className="mt-4 text-center text-sm font-bold uppercase tracking-widest text-blue-900 md:mt-8">
         Filter
       </h2>
 
-      <div className="mt-2 p-4 bg-blue-700 rounded font-bold text-sm text-white flex flex-col items-center justify-between gap-8 md:flex-row">
+      <div className="mt-2 flex flex-col items-center justify-between gap-8 rounded bg-blue-700 p-4 text-sm font-bold text-white md:flex-row">
         <StarGroup
           rating={planFilter.rating}
           setRating={(rating) =>

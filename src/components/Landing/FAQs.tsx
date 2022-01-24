@@ -12,25 +12,25 @@ function FAQ({ question, answer }: { question: string; answer: ReactNode }) {
   return (
     <div>
       <div
-        className="faq-question flex items-start cursor-pointer mt-6"
+        className="faq-question mt-6 flex cursor-pointer items-start"
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="w-8 flex-shrink-0 md:pt-1">
           <FontAwesomeIcon
             icon={faChevronCircleDown}
             className={`text-blue-500 transition ${
-              isOpen ? 'transform -rotate-180' : ''
+              isOpen ? '-rotate-180 transform' : ''
             }`}
           />
         </div>
 
         <div className="flex-grow">
-          <p className="font-bold md:text-xl md:pt-px">{question}</p>
+          <p className="font-bold md:pt-px md:text-xl">{question}</p>
         </div>
       </div>
 
       <div className={classNames({ hidden: !isOpen })}>
-        <div className="text-gray-700 text-sm leading-loose md:text-base md:leading-loose pl-8">
+        <div className="pl-8 text-sm leading-loose text-gray-700 md:text-base md:leading-loose">
           <div className="h-4" />
           {answer}
         </div>
@@ -41,10 +41,10 @@ function FAQ({ question, answer }: { question: string; answer: ReactNode }) {
 
 const FAQs: NextPage = () => {
   return (
-    <div id="faqs" className="px-6 pt-8 -mt-8 pb-12 md:pt-48 md:pb-64">
-      <div className="w-full max-w-2xl mx-auto">
+    <div id="faqs" className="-mt-8 px-6 pt-8 pb-12 md:pt-48 md:pb-64">
+      <div className="mx-auto w-full max-w-2xl">
         <div className="mb-8 flex flex-col items-center">
-          <h2 className="font-solway font-bold text-2xl md:text-3xl text-center border-b-4 border-blue-300 px-3 pb-1">
+          <h2 className="border-b-4 border-blue-300 px-3 pb-1 text-center font-solway text-2xl font-bold md:text-3xl">
             FAQs
           </h2>
         </div>
@@ -104,7 +104,7 @@ const FAQs: NextPage = () => {
               </p>
 
               <div className="mt-6">
-                <div className="md:w-11/12 rounded shadow border">
+                <div className="rounded border shadow md:w-11/12">
                   <Image
                     src={usageWeightImage}
                     alt="Usage weight distribution for the different usage profiles."

@@ -11,7 +11,7 @@ const Custom404: NextPage = () => {
       </Head>
 
       <div className="pt-32">
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           <h1>Page not found</h1>
 
           <div className="mt-4">

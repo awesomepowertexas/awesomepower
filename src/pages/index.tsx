@@ -15,16 +15,16 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="relative">
-        <IntroBgMobile className="absolute md:hidden z-[-10] w-full h-screen top-0 left-0" />
+        <IntroBgMobile className="absolute top-0 left-0 z-[-10] h-screen w-full md:hidden" />
 
-        <IntroBgDesktop className="absolute hidden md:block z-[-10] w-full h-screen top-0 left-0" />
+        <IntroBgDesktop className="absolute top-0 left-0 z-[-10] hidden h-screen w-full md:block" />
 
-        <PawprintsMobile className="absolute md:hidden z-[-10] w-full left-0 top-[65vh]" />
+        <PawprintsMobile className="absolute left-0 top-[65vh] z-[-10] w-full md:hidden" />
 
-        <PawprintsDesktop className="z-[-10] absolute hidden md:block w-full left-0 top-[calc(80vh-40vw)] max-h-full overflow-hidden" />
+        <PawprintsDesktop className="absolute left-0 top-[calc(80vh-40vw)] z-[-10] hidden max-h-full w-full overflow-hidden md:block" />
 
         <div className="h-screen p-4 pt-[16vh] md:pt-[20vh]">
-          <h1 className="font-bold font-solway text-3xl text-center md:text-5xl md:leading-tight">
+          <h1 className="text-center font-solway text-3xl font-bold md:text-5xl md:leading-tight">
             <div>
               Find a cheap
               <span className="hidden md:inline">&nbsp;</span>

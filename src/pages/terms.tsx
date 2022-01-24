@@ -8,10 +8,10 @@ const Terms: NextPage = () => {
         <title>Terms and Conditions | Awesome Power</title>
       </Head>
 
-      <div className="prose prose-blue w-full max-w-2xl mx-auto pt-20 md:pt-48 px-4 pb-8 md:pb-20">
+      <div className="prose prose-blue mx-auto w-full max-w-2xl px-4 pt-20 pb-8 md:pt-48 md:pb-20">
         <h1>Terms and Conditions</h1>
 
-        <div className="w-10 md:w-20 h-1 bg-blue-300" />
+        <div className="h-1 w-10 bg-blue-300 md:w-20" />
 
         <p>
           <i>Last updated: December 04, 2019</i>

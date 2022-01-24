@@ -82,6 +82,7 @@
     "pdfjs-dist": "^2.12.313",
     "postcss": "^8.4.5",
     "prettier": "^2.5.1",
+    "prettier-plugin-tailwindcss": "^0.1.2",
     "prisma": "^3.8.1",
     "tailwindcss": "^3.0.15",
     "ts-node": "^10.4.0",
