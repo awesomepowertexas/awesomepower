@@ -20,7 +20,7 @@
     "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push && pnpm seed",
     "coverage:instrument": "node --loader ts-node/esm scripts/coverage/instrument.ts",
     "coverage:dev": "cd .nyc/instrumented && pnpm dev",
-    "coverage:report": "node --loader ts-node/esm scripts/coverage/report.ts",
+    "coverage:open": "node --loader ts-node/esm scripts/coverage/open.ts",
     "cypress:open": "cd .nyc/instrumented && cypress open",
     "cypress:open-ct": "cd .nyc/instrumented && cypress open-ct",
     "cypress:run": "cd .nyc/instrumented && cypress run-ct && cypress run"

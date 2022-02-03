@@ -7,12 +7,14 @@ import shell from 'shelljs'
 
 const coverageFilePath = path.resolve('.nyc/coverage/index.html')
 const outputFilePath = path.resolve('.nyc/output/out.json')
+const instrumentedOutputFilePath = path.resolve(
+  '.nyc/instrumented/.nyc/output/out.json',
+)
 
 // Copy instrumented coverage data to .nyc/output
-fsExtra.copySync(
-  path.resolve('.nyc/instrumented/.nyc/output/out.json'),
-  outputFilePath,
-)
+if (fs.existsSync(instrumentedOutputFilePath)) {
+  fsExtra.copySync(instrumentedOutputFilePath, outputFilePath)
+}
 
 // Remove ".nyc/instrumented/" from output file
 const coverageOutputString = fs.readFileSync(outputFilePath, 'utf8')
@@ -22,7 +24,7 @@ fs.writeFileSync(
 )
 
 // Run istanbul report
-shell.exec('pnpm exec nyc report')
+shell.exec('pnpm nyc report')
 
 // Remove 100% covered files from HTML report
 const html = fs.readFileSync(coverageFilePath, 'utf8')

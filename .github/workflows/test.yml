@@ -7,6 +7,10 @@ env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
   NODE_ENV: production
 
+concurrency:
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
 jobs:
   component:
     name: Cypress component tests
@@ -34,8 +38,9 @@ jobs:
 
       - name: Instrument src
         run: |
-          cp -r ./src ./src-tmp
-          pnpm exec nyc instrument src --in-place
+          mkdir tmp
+          cp -r ./src ./tmp/src
+          pnpm nyc instrument src --in-place
 
       - name: Cypress component tests
         uses: cypress-io/github-action@v2
@@ -46,7 +51,7 @@ jobs:
       - name: Replace src with true source
         run: |
           rm -rf ./src
-          mv ./src-tmp ./src
+          mv ./tmp/src ./src
 
       - name: Upload to Codecov
         if: ${{ always() }}
@@ -104,8 +109,9 @@ jobs:
 
       - name: Instrument src
         run: |
+          mkdir tmp
           cp -r ./src ./tmp/src
-          pnpm exec nyc instrument src --in-place
+          pnpm nyc instrument src --in-place
 
       - name: Cypress end-to-end tests
         uses: cypress-io/github-action@v2

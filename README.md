@@ -52,7 +52,7 @@ mysqld_safe
 Migrate database
 
 ```
-pnpm exec prisma db push
+pnpm prisma db push
 ```
 
 Seed database
