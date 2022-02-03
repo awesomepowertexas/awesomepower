@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
       - uses: actions/checkout@v2
 
       - name: Cache pnpm modules
@@ -89,11 +84,6 @@ jobs:
           - 3306:3306
 
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
       - uses: actions/checkout@v2
 
       - name: Cache pnpm modules
