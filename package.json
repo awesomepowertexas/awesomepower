@@ -18,6 +18,7 @@
     "typecheck": "tsc --noEmit --pretty",
     "seed": "node --loader ts-node/esm scripts/seed.ts",
     "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push && pnpm seed",
+    "plans:update": "node --loader ts-node/esm scripts/plans/update.ts",
     "coverage:instrument": "node --loader ts-node/esm scripts/coverage/instrument.ts",
     "coverage:dev": "cd .nyc/instrumented && pnpm dev",
     "coverage:open": "node --loader ts-node/esm scripts/coverage/open.ts",
