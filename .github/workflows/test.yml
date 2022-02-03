@@ -32,18 +32,28 @@ jobs:
         env:
           NODE_ENV: development
 
+      - name: Instrument src
+        run: |
+          cp -r ./src ./src-tmp
+          pnpm exec nyc instrument src --in-place
+
       - name: Cypress component tests
         uses: cypress-io/github-action@v2
         with:
           install: false
           command: pnpm cypress run-ct
 
+      - name: Replace src with true source
+        run: |
+          rm -rf ./src
+          mv ./src-tmp ./src
+
       - name: Upload to Codecov
         if: ${{ always() }}
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+          files: ./.nyc/coverage/coverage-final.json
           fail_ci_if_error: true
 
   e2e:
@@ -92,6 +102,11 @@ jobs:
         env:
           NODE_ENV: development
 
+      - name: Instrument src
+        run: |
+          cp -r ./src ./tmp/src
+          pnpm exec nyc instrument src --in-place
+
       - name: Cypress end-to-end tests
         uses: cypress-io/github-action@v2
         with:
@@ -106,10 +121,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_ENV: development
 
+      - name: Replace src with true source
+        run: |
+          rm -rf ./src
+          mv ./tmp/src ./src
+
       - name: Upload to Codecov
         if: ${{ always() }}
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+          files: ./.nyc/coverage/coverage-final.json
           fail_ci_if_error: true

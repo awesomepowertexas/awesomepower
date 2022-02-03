@@ -2,13 +2,15 @@
 /node_modules/
 
 # testing
-/.nyc_output/
-/coverage/
+/.nyc/
 /cypress/screenshots/
 /cypress/videos/
 
 # next.js
 /.next/
+
+# temp
+/tmp/
 
 # misc
 .DS_Store

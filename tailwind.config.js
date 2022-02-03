@@ -32,9 +32,4 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
-  safelist: [
-    {
-      pattern: /bg-(blue|green|orange|red|gray)-(500|600)/,
-    },
-  ],
 }

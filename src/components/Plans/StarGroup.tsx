@@ -19,17 +19,14 @@ export default function StarGroup({
 
   return (
     <>
-      <div className="flex">
+      <div className="flex text-[#ECEE88]">
         {Array.from(new Array(5), (_, i) => i + 1).map((index) => (
           <Star
             key={index}
-            className={classNames([
-              'h-6',
-              filled >= index ? 'text-[#ECEE88]' : 'text-transparent',
-              {
-                'cursor-pointer': editable,
-              },
-            ])}
+            className={classNames('h-6', {
+              'text-transparent': filled < index,
+              'cursor-pointer': editable,
+            })}
             onMouseEnter={() => (editable ? setActiveHoverIndex(index) : null)}
             onMouseLeave={() => (editable ? setActiveHoverIndex(-1) : null)}
             onClick={() => (editable ? setRating(index) : null)}

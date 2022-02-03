@@ -1,25 +1,37 @@
-import React from 'react'
+import classNames from 'classnames'
+import { ButtonHTMLAttributes } from 'react'
 import LoadingSpinner from './LoadingSpinner'
 
-interface Props {
-  children: React.ReactNode
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: 'blue' | 'green' | 'red'
   loading?: boolean
 }
 
+const bgMap = {
+  blue: 'text-white bg-blue-500 hover:bg-blue-600',
+  green: 'text-white bg-green-500 hover:bg-green-600',
+  red: 'text-white bg-red-500 hover:bg-red-600',
+}
+
 export default function Button({
-  children,
   color,
   loading = false,
-  ...buttonProps
+  disabled = false,
+  className,
+  children,
+  ...props
 }: Props) {
   return (
     <button
-      disabled={loading}
-      className={`inline-flex h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded px-8 font-bold text-white transition bg-${color}-500 hover:bg-${color}-600`}
-      {...buttonProps}
+      disabled={loading || disabled}
+      className={classNames(
+        bgMap[color],
+        className,
+        'inline-flex h-10 cursor-pointer items-center justify-center whitespace-nowrap rounded px-8 font-bold transition disabled:pointer-events-none disabled:opacity-50',
+      )}
+      {...props}
     >
-      {loading || 0.5 > 2 ? <LoadingSpinner /> : children}
+      {loading ? <LoadingSpinner /> : children}
     </button>
   )
 }

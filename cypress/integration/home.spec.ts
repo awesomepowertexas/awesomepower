@@ -8,7 +8,7 @@ describe('Home', () => {
     cy.get('header').contains('FAQs').click()
     cy.get('footer').contains('FAQs').click()
 
-    cy.get('#faqs svg[data-icon=circle-chevron-down]')
+    cy.get('#faqs svg[data-icon=chevron-circle-down]')
       .first()
       .click()
       .parent()

@@ -1,8 +1,0 @@
-{
-  "extends": "@istanbuljs/nyc-config-typescript",
-  "include": ["src/**"],
-  "reporter": ["html", "json"],
-  "skip-empty": true,
-  "skip-full": true,
-  "summarizer": "flat"
-}

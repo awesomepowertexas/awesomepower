@@ -30,6 +30,6 @@ jobs:
         with:
           credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
 
-      - run: pnpm job -- updatePlans
+      - run: pnpm plans:update
         env:
           DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}

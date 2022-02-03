@@ -5,7 +5,11 @@ declare global {
   var prisma: Prisma.PrismaClient
 }
 
-const prisma = global.prisma ?? new Prisma.PrismaClient()
+const prisma =
+  global.prisma ??
+  (Prisma?.PrismaClient
+    ? new Prisma.PrismaClient()
+    : new (await import('@prisma/client/index.js')).PrismaClient())
 
 // Prevent multiple instances of Prisma Client in development
 if (process.env.NODE_ENV === 'development') {
