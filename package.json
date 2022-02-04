@@ -19,12 +19,11 @@
     "seed": "node --loader ts-node/esm scripts/seed.ts",
     "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push && pnpm seed",
     "plans:update": "node --loader ts-node/esm scripts/plans/update.ts",
-    "coverage:instrument": "node --loader ts-node/esm scripts/coverage/instrument.ts",
-    "coverage:dev": "cd .nyc/instrumented && pnpm dev",
-    "coverage:open": "node --loader ts-node/esm scripts/coverage/open.ts",
-    "cypress:open": "cd .nyc/instrumented && cypress open",
-    "cypress:open-ct": "cd .nyc/instrumented && cypress open-ct",
-    "cypress:run": "cd .nyc/instrumented && cypress run-ct && cypress run"
+    "cypress:open": "cypress open",
+    "cypress:open-ct": "cypress open-ct",
+    "coverage:dev": "node --loader ts-node/esm scripts/coverage/instrument.ts && cd .nyc/instrumented && pnpm dev",
+    "coverage:process": "node --loader ts-node/esm scripts/coverage/process.ts",
+    "coverage:open": "node --loader ts-node/esm scripts/coverage/open.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -60,7 +59,6 @@
     "@svgr/webpack": "^6.2.1",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.1",
-    "@types/fs-extra": "^9.0.13",
     "@types/jsdom": "^16.2.14",
     "@types/lodash": "^4.14.178",
     "@types/node": "17.0.14",
@@ -79,7 +77,6 @@
     "eslint-config-next": "12.0.10",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
-    "fs-extra": "^10.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "jsdom": "^19.0.0",

@@ -6,8 +6,8 @@ declare global {
 }
 
 const prisma =
-  global.prisma ??
-  (Prisma?.PrismaClient
+  global.prisma ||
+  (Prisma && Prisma.PrismaClient
     ? new Prisma.PrismaClient()
     : new (await import('@prisma/client/index.js')).PrismaClient())
 

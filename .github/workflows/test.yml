@@ -43,6 +43,8 @@ jobs:
         with:
           install: false
           command: pnpm cypress run-ct
+        env:
+          NODE_ENV: test
 
       - name: Replace src with true source
         run: |
@@ -121,7 +123,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_ENV: development
+          NODE_ENV: test
 
       - name: Replace src with true source
         run: |
