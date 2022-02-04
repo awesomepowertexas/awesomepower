@@ -6,6 +6,8 @@ import { TDUS } from '../data/tdus.js'
 import prisma from '../prisma/client.js'
 import { getPtcPlans } from './plans/ptc.js'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 /**
  * TDUs
  */
@@ -33,16 +35,13 @@ for (const providerData of PROVIDERS) {
     update: provider,
     create: {
       ...provider,
-      rating:
-        process.env.NODE_ENV === 'development'
-          ? lodash.random(1, 5)
-          : undefined,
+      rating: isProduction ? undefined : lodash.random(1, 5),
     },
   })
 }
 
 // Set actual ratings in production
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   const ptcPlans = await getPtcPlans()
 
   for (const provider of await prisma.provider.findMany()) {
@@ -61,7 +60,7 @@ if (process.env.NODE_ENV === 'production') {
  * Plans
  */
 
-if (process.env.NODE_ENV === 'development') {
+if (!isProduction) {
   let ptcIdKey = 1
 
   for (const provider of await prisma.provider.findMany()) {

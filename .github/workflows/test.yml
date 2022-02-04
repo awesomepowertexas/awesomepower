@@ -5,7 +5,7 @@ on:
 
 env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
-  NODE_ENV: production
+  NODE_ENV: test
 
 jobs:
   component:
@@ -29,8 +29,6 @@ jobs:
         with:
           version: 6.26.1
           run_install: true
-        env:
-          NODE_ENV: development
 
       - name: Instrument src
         run: |
@@ -43,8 +41,6 @@ jobs:
         with:
           install: false
           command: pnpm cypress run-ct
-        env:
-          NODE_ENV: test
 
       - name: Replace src with true source
         run: |
@@ -102,8 +98,6 @@ jobs:
         with:
           version: 6.26.1
           run_install: true
-        env:
-          NODE_ENV: development
 
       - name: Instrument src
         run: |
@@ -123,7 +117,6 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_ENV: test
 
       - name: Replace src with true source
         run: |
