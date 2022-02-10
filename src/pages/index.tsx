@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import IntroBgDesktop from '~/assets/svg/intro-bg-desktop.svg'
 import IntroBgMobile from '~/assets/svg/intro-bg-mobile.svg'
@@ -7,7 +6,7 @@ import PawprintsMobile from '~/assets/svg/pawprints-mobile.svg'
 import FAQs from '~/components/Landing/FAQs'
 import FindPlans from '~/components/Landing/FindPlans'
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <>
       <Head>
@@ -47,5 +46,3 @@ const Home: NextPage = () => {
     </>
   )
 }
-
-export default Home

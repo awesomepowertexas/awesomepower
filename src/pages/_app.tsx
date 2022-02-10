@@ -1,30 +1,18 @@
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
 import { loggerLink } from '@trpc/client/links/loggerLink'
 import { withTRPC } from '@trpc/next'
-import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import { AppType } from 'next/dist/shared/lib/utils'
 import Head from 'next/head'
-import { ReactElement, ReactNode } from 'react'
 import { ReactQueryDevtools } from 'react-query/devtools'
-import DefaultLayout from '~/layouts/Default'
+import Footer from '~/components/_layouts/Footer'
+import Header from '~/components/_layouts/Header'
 import { AppRouter } from '~/server/routers/_app'
 import superjson from '~/utils/superjson'
 import '../styles/globals.css'
 
-export type NextPageWithLayout = NextPage & {
-  getLayout?: (_page: ReactElement) => ReactNode
-}
-
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
-
-const App = (({ Component, pageProps }: AppPropsWithLayout) => {
-  const getLayout =
-    Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>)
-
-  return getLayout(
+const App = (({ Component, pageProps }: AppProps) => {
+  return (
     <>
       <Head>
         <meta charSet="UTF-8" />
@@ -68,10 +56,18 @@ const App = (({ Component, pageProps }: AppPropsWithLayout) => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <Component {...pageProps} />
+      <div>
+        <Header />
+
+        <main className="min-h-[calc(100vh-8rem)]">
+          <Component {...pageProps} />
+        </main>
+
+        <Footer />
+      </div>
 
       <ReactQueryDevtools initialIsOpen={false} />
-    </>,
+    </>
   )
 }) as AppType
 

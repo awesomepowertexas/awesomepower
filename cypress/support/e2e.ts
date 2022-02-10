@@ -4,6 +4,7 @@ import './index'
 beforeEach(() => {
   registerIntercepts()
   cy.exec('pnpm db:reset')
+  cy.exec('pnpm db:seed')
 })
 
 after(() => {

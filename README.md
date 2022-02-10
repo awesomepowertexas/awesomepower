@@ -3,18 +3,24 @@
 
 # Stack
 
-| Component         | Tool                                                        |
-| ----------------- | ----------------------------------------------------------- |
-| Language          | [TypeScript](https://www.typescriptlang.org/)               |
-| Framework         | [Next.js](https://github.com/vercel/next.js)                |
-| ORM               | [Prisma](https://github.com/prisma/prisma)                  |
-| API               | [tRPC](https://github.com/trpc/trpc)                        |
-| Schema Validation | [Zod](https://github.com/colinhacks/zod)                    |
-| State Management  | [Zustand](https://github.com/pmndrs/zustand)                |
-| Auth              | [NextAuth.js](https://github.com/nextauthjs/next-auth)      |
-| Styling           | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) |
-| Database          | [PlanetScale](https://planetscale.com/)                     |
-| Hosting           | [Vercel](https://vercel.com/)                               |
+| Component  | Tool                                                        |
+| ---------- | ----------------------------------------------------------- |
+| Language   | [TypeScript](https://www.typescriptlang.org/)               |
+| UI Library | [React](https://github.com/facebook/react)                  |
+| Framework  | [Next.js](https://github.com/vercel/next.js)                |
+| Styling    | [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) |
+| ORM        | [Prisma](https://github.com/prisma/prisma)                  |
+| API        | [tRPC](https://github.com/trpc/trpc)                        |
+| Database   | [PlanetScale](https://planetscale.com/)                     |
+| Hosting    | [Vercel](https://vercel.com/)                               |
+
+## Other Notable Libraries
+
+| Component         | Tool                                                   |
+| ----------------- | ------------------------------------------------------ |
+| Schema Validation | [Zod](https://github.com/colinhacks/zod)               |
+| State Management  | [Zustand](https://github.com/pmndrs/zustand)           |
+| Auth              | [NextAuth.js](https://github.com/nextauthjs/next-auth) |
 
 # Setup
 

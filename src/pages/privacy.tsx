@@ -1,7 +1,6 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 
-const Privacy: NextPage = () => {
+export default function Privacy() {
   return (
     <>
       <Head>
@@ -316,5 +315,3 @@ const Privacy: NextPage = () => {
     </>
   )
 }
-
-export default Privacy

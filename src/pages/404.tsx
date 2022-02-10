@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import Button from '~/components/_global/Button'
 
-const Custom404: NextPage = () => {
+export default function Custom404() {
   return (
     <>
       <Head>
@@ -26,5 +25,3 @@ const Custom404: NextPage = () => {
     </>
   )
 }
-
-export default Custom404

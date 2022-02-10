@@ -1,7 +1,6 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 
-const Terms: NextPage = () => {
+export default function Terms() {
   return (
     <>
       <Head>
@@ -154,5 +153,3 @@ const Terms: NextPage = () => {
     </>
   )
 }
-
-export default Terms

@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useImmer } from 'use-immer'
@@ -12,7 +11,7 @@ export interface PlanFilter {
   renewable: boolean
 }
 
-const PlansPage: NextPage = () => {
+export default function PlansPage() {
   const router = useRouter()
 
   const [planFilter, setPlanFilter] = useImmer<PlanFilter>({
@@ -43,5 +42,3 @@ const PlansPage: NextPage = () => {
     </>
   )
 }
-
-export default PlansPage

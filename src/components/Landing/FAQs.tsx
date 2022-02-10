@@ -1,7 +1,6 @@
-import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
+import { faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
-import { NextPage } from 'next'
 import Image from 'next/image'
 import { ReactNode, useState } from 'react'
 import usageWeightImage from '~/assets/img/usage-weight.png'
@@ -17,7 +16,7 @@ function FAQ({ question, answer }: { question: string; answer: ReactNode }) {
       >
         <div className="w-8 flex-shrink-0 md:pt-1">
           <FontAwesomeIcon
-            icon={faChevronCircleDown}
+            icon={faCircleChevronDown}
             className={`text-blue-500 transition ${
               isOpen ? '-rotate-180 transform' : ''
             }`}
@@ -39,7 +38,7 @@ function FAQ({ question, answer }: { question: string; answer: ReactNode }) {
   )
 }
 
-const FAQs: NextPage = () => {
+export default function FAQs() {
   return (
     <div id="faqs" className="-mt-8 px-6 pt-8 pb-12 md:pt-48 md:pb-64">
       <div className="mx-auto w-full max-w-2xl">
@@ -184,5 +183,3 @@ const FAQs: NextPage = () => {
     </div>
   )
 }
-
-export default FAQs
