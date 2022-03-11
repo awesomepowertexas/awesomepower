@@ -17,7 +17,7 @@ function FAQ({ question, answer }: { question: string; answer: ReactNode }) {
         <div className="w-8 flex-shrink-0 md:pt-1">
           <FontAwesomeIcon
             icon={faCircleChevronDown}
-            className={`text-blue-500 transition ${
+            className={`mt-[0.2rem] h-4 text-blue-500 transition ${
               isOpen ? '-rotate-180 transform' : ''
             }`}
           />

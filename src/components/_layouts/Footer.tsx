@@ -29,7 +29,7 @@ function Footer() {
             className="transition hover:text-gray-500"
             rel="noreferrer"
           >
-            <FontAwesomeIcon icon={faFacebookSquare} />
+            <FontAwesomeIcon icon={faFacebookSquare} className="h-8" />
           </a>
 
           <a
@@ -38,7 +38,7 @@ function Footer() {
             className="transition hover:text-gray-500"
             rel="noreferrer"
           >
-            <FontAwesomeIcon icon={faTwitterSquare} />
+            <FontAwesomeIcon icon={faTwitterSquare} className="h-8" />
           </a>
 
           <a
@@ -47,7 +47,7 @@ function Footer() {
             className="transition hover:text-gray-500"
             rel="noreferrer"
           >
-            <FontAwesomeIcon icon={faGithub} />
+            <FontAwesomeIcon icon={faGithub} className="h-8" />
           </a>
         </div>
 
