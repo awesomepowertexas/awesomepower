@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
-import Button from '~/components/_global/Button'
-import LoadingSpinner from '~/components/_global/LoadingSpinner'
-import { trpc } from '~/utils/trpc'
+import Button from '~/src/components/_global/Button'
+import LoadingSpinner from '~/src/components/_global/LoadingSpinner'
+import { trpc } from '~/src/utils/trpc'
 import usePlanStore from '../Plans/store'
 
 function FindPlans() {

@@ -1,4 +1,4 @@
-import Prisma from '@prisma/client'
+import type Prisma from '@prisma/client'
 
 // https://4changeenergy.com/tdu-charges
 // https://electricityplans.com/texas/tdu-delivery-charges/

@@ -22,17 +22,15 @@
     "no-unused-vars": "off",
     "no-var": "off",
     "react/no-unescaped-entities": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { "checksVoidReturn": { "attributes": false } }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "error",
       { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
     ]
-  },
-  "ignorePatterns": [
-    "lint-staged.config.js",
-    "next.config.js",
-    "nyc.config.js",
-    "postcss.config.js",
-    "tailwind.config.js"
-  ]
+  }
 }

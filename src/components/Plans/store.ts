@@ -1,6 +1,6 @@
 import produce from 'immer'
 import create from 'zustand'
-import { InferQueryOutput } from '~/utils/trpc'
+import type { InferQueryOutput } from '~/src/utils/trpc'
 
 interface PlanStore {
   plans: InferQueryOutput<'plan.all'>

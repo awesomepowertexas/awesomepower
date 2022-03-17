@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import Button from '~/components/_global/Button'
-import { InferQueryOutput } from '~/utils/trpc'
-import type { OrderBy } from '~/utils/types'
+import Button from '~/src/components/_global/Button'
+import type { InferQueryOutput } from '~/src/utils/trpc'
+import type { OrderBy } from '~/src/utils/types'
 import StarGroup from './StarGroup'
 
 interface Props {

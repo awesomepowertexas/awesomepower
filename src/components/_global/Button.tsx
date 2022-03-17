@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { ButtonHTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
 import LoadingSpinner from './LoadingSpinner'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {

@@ -27,9 +27,9 @@
 Create `.env`
 
 ```
-echo "DATABASE_URL=mysql://root@localhost:3306/awesomepower
-GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json
-NODE_ENV=development" >> .env
+echo "APP_ENV=development
+DATABASE_URL=mysql://root@localhost:3306/awesomepower
+GOOGLE_APPLICATION_CREDENTIALS=google-credentials.json" >> .env
 ```
 
 ## Node

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { getTduNameFromZipCode } from '~/utils/ptc'
+import { getTduNameFromZipCode } from '~/src/utils/ptc'
 import { createRouter } from '../createRouter'
 
 export const planRouter = createRouter().query('all', {

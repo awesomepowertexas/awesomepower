@@ -1,5 +1,5 @@
-import type { PlanFilter } from '~/pages/plans/[zipCode]'
-import { termOptions } from '~/utils/types'
+import type { PlanFilter } from '~/src/pages/plans/[zipCode]'
+import { termOptions } from '~/src/utils/types'
 import StarGroup from './StarGroup'
 
 interface Props {

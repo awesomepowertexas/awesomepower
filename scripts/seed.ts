@@ -6,7 +6,7 @@ import { TDUS } from '../data/tdus.js'
 import prisma from '../prisma/client.js'
 import { getPtcPlans } from './plans/ptc.js'
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isProduction = process.env.APP_ENV === 'production'
 
 /**
  * TDUs

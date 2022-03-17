@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import Image from 'next/image'
 import { ReactNode, useState } from 'react'
-import usageWeightImage from '~/assets/img/usage-weight.png'
+import usageWeightImage from '~/src/assets/img/usage-weight.png'
 
 function FAQ({ question, answer }: { question: string; answer: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)

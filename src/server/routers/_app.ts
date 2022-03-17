@@ -1,4 +1,4 @@
-import superjson from '~/utils/superjson'
+import superjson from '~/src/utils/superjson'
 import { createRouter } from '../createRouter'
 import { planRouter } from './plan'
 

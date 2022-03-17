@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Button from '~/components/_global/Button'
+import Button from '~/src/components/_global/Button'
 
 export default function Custom404() {
   return (

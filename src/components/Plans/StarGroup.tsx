@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useState } from 'react'
-import Star from '~/assets/svg/star.svg'
+import Star from '~/src/assets/svg/star.svg'
 
 interface Props {
   rating: number

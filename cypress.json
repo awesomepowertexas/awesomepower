@@ -3,17 +3,19 @@
   "component": {
     "componentFolder": "src",
     "supportFile": "cypress/support/component.ts",
-    "testFiles": "**/*.spec.{js,jsx,ts,tsx}"
+    "testFiles": "**/*.spec.{js,jsx,ts,tsx}",
+    "viewportHeight": 600,
+    "viewportWidth": 800
   },
   "e2e": {
-    "supportFile": "cypress/support/e2e.ts"
+    "supportFile": "cypress/support/e2e.ts",
+    "viewportHeight": 1024,
+    "viewportWidth": 1440
   },
   "env": {
     "codeCoverage": {
       "url": "/api/__coverage__"
     }
   },
-  "projectId": "68w8zv",
-  "viewportHeight": 1024,
-  "viewportWidth": 1440
+  "projectId": "68w8zv"
 }

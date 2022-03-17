@@ -5,7 +5,6 @@ on:
 
 env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
-  NODE_ENV: test
 
 jobs:
   component:
@@ -13,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Cache pnpm modules
         uses: actions/cache@v2
@@ -82,7 +81,7 @@ jobs:
           - 3306:3306
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Cache pnpm modules
         uses: actions/cache@v2

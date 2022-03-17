@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useImmer } from 'use-immer'
-import Filter from '~/components/Plans/Filter'
-import PlanList from '~/components/Plans/PlanList'
-import type { TermOption } from '~/utils/types'
+import Filter from '~/src/components/Plans/Filter'
+import PlanList from '~/src/components/Plans/PlanList'
+import type { TermOption } from '~/src/utils/types'
 
 export interface PlanFilter {
   rating: number

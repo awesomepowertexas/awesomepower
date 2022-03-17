@@ -1,0 +1,26 @@
+{
+  "cache": false,
+  "exclude": ["**/_middleware.ts"],
+  "include": ["src/**"],
+  "parserPlugins": [
+    "asyncGenerators",
+    "bigInt",
+    "classProperties",
+    "classPrivateProperties",
+    "classPrivateMethods",
+    "dynamicImport",
+    "importMeta",
+    "jsx",
+    "numericSeparator",
+    "objectRestSpread",
+    "optionalCatchBinding",
+    "topLevelAwait",
+    "typescript"
+  ],
+  "report-dir": "./.nyc/coverage",
+  "reporter": ["html", "json"],
+  "skip-empty": true,
+  "skip-full": true,
+  "summarizer": "flat",
+  "temp-dir": "./.nyc/output"
+}

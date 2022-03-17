@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import IntroBgDesktop from '~/assets/svg/intro-bg-desktop.svg'
-import IntroBgMobile from '~/assets/svg/intro-bg-mobile.svg'
-import PawprintsDesktop from '~/assets/svg/pawprints-desktop.svg'
-import PawprintsMobile from '~/assets/svg/pawprints-mobile.svg'
-import FAQs from '~/components/Landing/FAQs'
-import FindPlans from '~/components/Landing/FindPlans'
+import IntroBgDesktop from '~/src/assets/svg/intro-bg-desktop.svg'
+import IntroBgMobile from '~/src/assets/svg/intro-bg-mobile.svg'
+import PawprintsDesktop from '~/src/assets/svg/pawprints-desktop.svg'
+import PawprintsMobile from '~/src/assets/svg/pawprints-mobile.svg'
+import FAQs from '~/src/components/Landing/FAQs'
+import FindPlans from '~/src/components/Landing/FindPlans'
 
 export default function Home() {
   return (
