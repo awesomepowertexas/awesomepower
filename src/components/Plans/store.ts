@@ -7,7 +7,7 @@ interface PlanStore {
   setPlans: (_plans: InferQueryOutput<'plan.all'>) => void
 }
 
-const usePlanStore = create<PlanStore>((set) => ({
+const usePlanStore = create<PlanStore>()((set) => ({
   plans: [],
   setPlans: (newPlans) =>
     set(

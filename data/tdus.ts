@@ -12,7 +12,7 @@ export const TDUS: {
     name: 'AEP Central',
     ptcName: 'AEP TEXAS CENTRAL',
     charges: ['5.88'],
-    rates: ['0.045196', '0.045174'],
+    rates: ['0.045213', '0.045196'],
   },
   {
     name: 'AEP North',
@@ -24,7 +24,7 @@ export const TDUS: {
     name: 'Centerpoint',
     ptcName: 'CENTERPOINT ENERGY HOUSTON ELECTRIC LLC',
     charges: ['4.39'],
-    rates: ['0.038523', '0.046397'],
+    rates: ['0.039416', '0.038523'],
   },
   {
     name: 'Oncor',
