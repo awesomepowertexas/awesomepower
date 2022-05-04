@@ -1,7 +1,6 @@
 name: Run Tests
 
-on:
-  - push
+on: [push]
 
 env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
@@ -26,7 +25,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.26.1
+          version: 6.32.11
           run_install: true
 
       - name: Instrument src
@@ -46,13 +45,13 @@ jobs:
           rm -rf ./src
           mv ./tmp/src ./src
 
-      - name: Upload to Codecov
-        if: ${{ always() }}
-        uses: codecov/codecov-action@v2
+      - name: Upload to Coveralls
+        uses: coverallsapp/github-action@1.1.3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./.nyc/coverage/coverage-final.json
-          fail_ci_if_error: true
+          flag-name: component
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./.nyc/coverage/lcov.info
+          parallel: true
 
   e2e:
     name: Cypress end-to-end tests
@@ -95,7 +94,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.26.1
+          version: 6.32.11
           run_install: true
 
       - name: Instrument src
@@ -122,10 +121,23 @@ jobs:
           rm -rf ./src
           mv ./tmp/src ./src
 
-      - name: Upload to Codecov
-        if: ${{ always() }}
-        uses: codecov/codecov-action@v2
+      - name: Upload to Coveralls
+        uses: coverallsapp/github-action@1.1.3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./.nyc/coverage/coverage-final.json
-          fail_ci_if_error: true
+          flag-name: e2e-${{ matrix.containers }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./.nyc/coverage/lcov.info
+          parallel: true
+
+  finalize-coveralls:
+    name: Finalize Coveralls coverage
+    if: ${{ always() }}
+    needs: [component, e2e]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Coveralls finished
+        uses: coverallsapp/github-action@1.1.3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true

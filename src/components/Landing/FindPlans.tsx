@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react'
+import usePlanStore from '~/src/components/Plans/store'
 import Button from '~/src/components/_global/Button'
 import LoadingSpinner from '~/src/components/_global/LoadingSpinner'
 import { trpc } from '~/src/utils/trpc'
-import usePlanStore from '../Plans/store'
 
 function FindPlans() {
   const router = useRouter()

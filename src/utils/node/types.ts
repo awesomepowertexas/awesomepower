@@ -1,4 +1,4 @@
-import type { Decimal } from '@prisma/client/runtime/index.js'
+import type { Decimal } from '@prisma/client/runtime'
 
 export type ChargeFunction = {
   kwh: Decimal

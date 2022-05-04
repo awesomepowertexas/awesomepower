@@ -18,7 +18,7 @@
     "typescript"
   ],
   "report-dir": "./.nyc/coverage",
-  "reporter": ["html", "json"],
+  "reporter": ["html", "json", "lcov"],
   "skip-empty": true,
   "skip-full": true,
   "summarizer": "flat",

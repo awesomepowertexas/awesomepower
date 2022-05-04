@@ -1,5 +1,5 @@
 [![Awesome Power](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/68w8zv/main&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/68w8zv/runs)
-[![codecov](https://codecov.io/gh/awesomepowertexas/awesomepower/branch/main/graph/badge.svg?token=0AXhZNZUGy)](https://codecov.io/gh/awesomepowertexas/awesomepower)
+[![Coveralls](https://coveralls.io/repos/github/awesomepowertexas/awesomepower/badge.svg?branch=coveralls)](https://coveralls.io/github/awesomepowertexas/awesomepower?branch=coveralls)
 
 # Stack
 
@@ -38,7 +38,7 @@ Install pnpm
 
 ```
 corepack enable
-corepack prepare pnpm@6.26.1 --activate
+corepack prepare pnpm@6.32.11 --activate
 ```
 
 Install dependencies
