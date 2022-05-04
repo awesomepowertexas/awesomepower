@@ -1,7 +1,6 @@
 name: Run Tests
 
-on:
-  - push
+on: [push, pull_request]
 
 env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
