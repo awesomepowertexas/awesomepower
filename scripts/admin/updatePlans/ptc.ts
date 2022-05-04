@@ -1,5 +1,5 @@
 import type { Plan, PlanLanguage, PlanRateType } from '@prisma/client'
-import { Decimal } from '@prisma/client/runtime/index.js'
+import { Decimal } from '@prisma/client/runtime/index'
 import axios from 'axios'
 import * as csv from 'csv'
 

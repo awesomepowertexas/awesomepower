@@ -1,6 +1,6 @@
-/* eslint no-unused-vars: off */
-import { Decimal } from '@prisma/client/runtime/index.js'
-import type { ChargeFunction, RateFunction } from '../src/utils/node/types.js'
+/* eslint @typescript-eslint/no-unused-vars: off */
+import { Decimal } from '@prisma/client/runtime'
+import type { ChargeFunction, RateFunction } from '~/src/utils/node/types'
 
 export const PROVIDERS: {
   name: string

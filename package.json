@@ -6,6 +6,7 @@
     "node": ">=14",
     "pnpm": ">=6"
   },
+  "type": "commonjs",
   "prisma": {
     "seed": "pnpm seed"
   },
@@ -17,13 +18,13 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit --pretty",
     "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push",
-    "db:seed": "node --loader ts-node/esm scripts/seed.ts",
-    "plans:update": "node --loader ts-node/esm scripts/plans/update.ts",
+    "db:seed": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/seed.ts",
+    "admin:updatePlans": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/admin/updatePlans/index.ts",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
-    "coverage:dev": "node --loader ts-node/esm scripts/coverage/instrument.ts && cd .nyc/instrumented && pnpm dev",
-    "coverage:process": "node --loader ts-node/esm scripts/coverage/process.ts",
-    "coverage:open": "node --loader ts-node/esm scripts/coverage/open.ts"
+    "coverage:dev": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/coverage/instrument.ts && cd .nyc/instrumented && pnpm dev",
+    "coverage:process": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/coverage/process.ts",
+    "coverage:open": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/coverage/open.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -91,6 +92,7 @@
     "shelljs": "^0.8.5",
     "tailwindcss": "^3.0.24",
     "ts-node": "^10.7.0",
+    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.4",
     "webpack": "^5.72.0",
     "webpack-dev-server": "^4.8.1"

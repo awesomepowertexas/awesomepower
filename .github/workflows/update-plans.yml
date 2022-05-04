@@ -33,6 +33,6 @@ jobs:
           APP_ENV: production
           DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
 
-      - run: pnpm plans:update
+      - run: pnpm admin:updatePlans
         env:
           DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}

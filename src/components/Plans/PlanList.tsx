@@ -1,10 +1,10 @@
 import lodash from 'lodash'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import LoadingSpinner from '~/src/components/_global/LoadingSpinner'
 import type { PlanFilter } from '~/src/pages/plans/[zipCode]'
 import { trpc } from '~/src/utils/trpc'
 import type { OrderBy } from '~/src/utils/types'
-import LoadingSpinner from '../_global/LoadingSpinner'
 import PlanListCard from './PlanListCard'
 import usePlanStore from './store'
 

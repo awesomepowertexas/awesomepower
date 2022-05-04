@@ -3,6 +3,7 @@ module.exports = {
   optimizeFonts: false,
   reactStrictMode: true,
 
+  /* eslint-disable */
   webpack(config) {
     config.experiments = {
       topLevelAwait: true,
@@ -15,4 +16,5 @@ module.exports = {
 
     return config
   },
+  /* eslint-enable */
 }

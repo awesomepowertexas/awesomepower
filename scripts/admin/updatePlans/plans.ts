@@ -1,10 +1,7 @@
-import { Decimal } from '@prisma/client/runtime/index.js'
+import { Decimal } from '@prisma/client/runtime'
 import lodash from 'lodash'
-import type {
-  ChargeFunction,
-  RateFunction,
-} from '../../src/utils/node/types.js'
-import { rSkewNorm } from './skewnorm.js'
+import type { ChargeFunction, RateFunction } from '~/src/utils/node/types'
+import { rSkewNorm } from './skewnorm'
 
 /**
  * Calculate the cost of the plan at a certain kWH

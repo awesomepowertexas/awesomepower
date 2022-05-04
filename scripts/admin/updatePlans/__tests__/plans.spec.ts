@@ -1,4 +1,4 @@
-import { Decimal } from '@prisma/client/runtime/index.js'
+import { Decimal } from '@prisma/client/runtime'
 import { calculatePlanCost, kwhEstimatesMatchCostFunctions } from '../plans'
 
 const chargeFunction = [
