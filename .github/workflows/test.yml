@@ -148,6 +148,7 @@ jobs:
 
   finalize-coveralls:
     name: Finalize Coveralls coverage
+    if: ${{ always() }}
     needs: [component, e2e]
     runs-on: ubuntu-latest
 
