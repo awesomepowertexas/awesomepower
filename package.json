@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "engines": {
     "node": ">=14",
-    "pnpm": ">=6"
+    "pnpm": ">=7"
   },
   "type": "commonjs",
   "prisma": {
