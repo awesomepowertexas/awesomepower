@@ -26,7 +26,7 @@ jobs:
         with:
           credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
 
-      - run: pnpm db:seed
+      - run: pnpm prisma generate && pnpm db:seed
         env:
           APP_ENV: production
           DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
