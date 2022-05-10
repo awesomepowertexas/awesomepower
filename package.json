@@ -9,6 +9,7 @@
   "volta": {
     "node": "16.15.0"
   },
+  "packageManager": "pnpm@7.0.1",
   "type": "commonjs",
   "prisma": {
     "seed": "pnpm seed"

@@ -13,20 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
+      - uses: pnpm/action-setup@v2
         with:
-          path: |
-            ~/.pnpm-store
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/.github/workflows/test.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          version: 7.0.1
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: actions/setup-node@v3
         with:
-          version: 6.32.11
-          run_install: true
+          node-version: 16.15.0
+          cache: 'pnpm'
+
+      - run: pnpm install
 
       - name: Instrument src
         run: |
@@ -82,20 +78,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v2
+      - uses: pnpm/action-setup@v2
         with:
-          path: |
-            ~/.pnpm-store
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/.github/workflows/test.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-
+          version: 7.0.1
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: actions/setup-node@v3
         with:
-          version: 6.32.11
-          run_install: true
+          node-version: 16.15.0
+          cache: 'pnpm'
+
+      - run: pnpm install
 
       - name: Instrument src
         run: |
