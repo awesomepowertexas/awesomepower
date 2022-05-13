@@ -38,7 +38,7 @@ Install pnpm
 
 ```
 corepack enable
-corepack prepare pnpm@7.0.1 --activate
+corepack prepare pnpm@7.1.0 --activate
 ```
 
 Install dependencies
