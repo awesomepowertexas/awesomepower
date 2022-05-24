@@ -118,7 +118,6 @@ async function seed() {
     }
   }
 
-  console.log()
   consola.success('Database seeded successfully')
 }
 

@@ -38,6 +38,8 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm db:reset && pnpm db:seed
+
       - name: Instrument src
         run: |
           cp -r ./src ./src-tmp

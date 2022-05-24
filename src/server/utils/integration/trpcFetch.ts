@@ -34,9 +34,6 @@ export default async function trpcFetch({
     responseJson = responseJson[0]
   }
 
-  console.log(responseJson.error)
-  console.log(responseJson.error?.json.message)
-
   return {
     response,
     data: responseJson.result?.data.json,
