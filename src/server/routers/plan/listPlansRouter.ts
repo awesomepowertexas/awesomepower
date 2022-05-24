@@ -1,8 +1,11 @@
 import { z } from 'zod'
 import { getTduNameFromZipCode } from '~/src/utils/ptc'
-import { createRouter } from '../createRouter'
+import { createRouter } from '../../createRouter'
 
-export const planRouter = createRouter().query('all', {
+/**
+ * List all plans within a given zip code.
+ */
+const listPlansRouter = createRouter().query('plan.all', {
   input: z.object({
     zipCode: z.string().length(5),
   }),
@@ -39,3 +42,5 @@ export const planRouter = createRouter().query('all', {
     })
   },
 })
+
+export default listPlansRouter

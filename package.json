@@ -23,12 +23,10 @@
     "typecheck": "tsc --noEmit --pretty",
     "db:reset": "prisma migrate reset --force --skip-generate --skip-seed && prisma db push",
     "db:seed": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/seed.ts",
-    "admin:updatePlans": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/admin/updatePlans/index.ts",
+    "vitest:run": "vitest run",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
-    "coverage:dev": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/coverage/instrument.ts && cd .nyc/instrumented && pnpm dev",
-    "coverage:process": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/coverage/process.ts",
-    "coverage:open": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/coverage/open.ts"
+    "admin:updatePlans": "ts-node --files -r tsconfig-paths/register -r dotenv/config scripts/admin/updatePlans/index.ts"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -46,13 +44,14 @@
     "immer": "^9.0.14",
     "lodash": "^4.17.21",
     "next": "^12.1.6",
+    "node-fetch": "^3.2.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-query": "^3.39.0",
     "superjson": "^1.9.1",
     "use-immer": "^0.7.0",
     "zod": "^3.16.0",
-    "zustand": "^4.0.0-rc.1"
+    "zustand": "4.0.0-rc.1"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.12",
@@ -72,8 +71,9 @@
     "@types/shelljs": "^0.8.11",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
+    "@vitejs/plugin-react": "^1.3.2",
     "autoprefixer": "^10.4.7",
-    "canvas": "^2.9.1",
+    "c8": "^7.11.3",
     "consola": "^2.15.3",
     "csv": "^6.0.5",
     "cypress": "^9.6.1",
@@ -86,7 +86,7 @@
     "husky": "^8.0.1",
     "jsdom": "^19.0.0",
     "lint-staged": "^12.4.1",
-    "nyc": "github:michaelhays/nyc",
+    "nyc": "^15.1.0",
     "open": "^8.4.0",
     "pdfjs-dist": "^2.13.216",
     "postcss": "^8.4.13",
@@ -98,6 +98,7 @@
     "ts-node": "^10.7.0",
     "tsconfig-paths": "^4.0.0",
     "typescript": "^4.6.4",
+    "vitest": "^0.12.9",
     "webpack": "^5.72.1",
     "webpack-dev-server": "^4.9.0"
   }

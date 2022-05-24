@@ -1,5 +1,8 @@
+/* eslint-disable */
+
 import vision from '@google-cloud/vision'
 import axios from 'axios'
+// @ts-ignore
 import Canvas from 'canvas'
 import { JSDOM } from 'jsdom'
 import pdfjs from 'pdfjs-dist/legacy/build/pdf'

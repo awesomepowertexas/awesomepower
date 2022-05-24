@@ -5,10 +5,13 @@ import consola from 'consola'
 import lodash from 'lodash'
 import { PROVIDERS } from '~/data/providers'
 import prisma from '~/prisma/client'
-import { getPdfText } from './pdf'
-import { calculateRateEstimates, kwhEstimatesMatchCostFunctions } from './plans'
-import type { PtcPlan } from './ptc'
-import { getPtcPlans } from './ptc'
+import { getPdfText } from './utils/pdf'
+import {
+  calculateRateEstimates,
+  kwhEstimatesMatchCostFunctions,
+} from './utils/plans'
+import type { PtcPlan } from './utils/ptc'
+import { getPtcPlans } from './utils/ptc'
 
 const { Prisma } = PrismaClient ?? require('@prisma/client')
 

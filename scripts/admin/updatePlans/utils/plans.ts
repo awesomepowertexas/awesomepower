@@ -15,7 +15,7 @@ export function calculatePlanCost(
   let chargeIndex = chargeFunction.length - 1
 
   for (const [index, functionPiece] of chargeFunction.entries()) {
-    if (kwh < functionPiece.kwh) {
+    if (kwh.lessThan(functionPiece.kwh)) {
       chargeIndex = index - 1
       break
     }
@@ -27,7 +27,7 @@ export function calculatePlanCost(
   let rateIndex = rateFunction.length - 1
 
   for (const [index, functionPiece] of rateFunction.entries()) {
-    if (kwh < functionPiece.kwh) {
+    if (kwh.lessThan(functionPiece.kwh)) {
       rateIndex = index - 1
       break
     }

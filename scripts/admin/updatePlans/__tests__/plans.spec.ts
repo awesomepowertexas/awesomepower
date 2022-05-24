@@ -1,5 +1,9 @@
 import { Decimal } from '@prisma/client/runtime'
-import { calculatePlanCost, kwhEstimatesMatchCostFunctions } from '../plans'
+import { describe, expect, it } from 'vitest'
+import {
+  calculatePlanCost,
+  kwhEstimatesMatchCostFunctions,
+} from '../utils/plans'
 
 const chargeFunction = [
   {
@@ -31,6 +35,30 @@ describe('calculatePlanCost', () => {
         rateFunction,
       ).toNumber(),
     ).to.equal(30)
+
+    expect(
+      calculatePlanCost(
+        new Decimal('500'),
+        chargeFunction,
+        rateFunction,
+      ).toNumber(),
+    ).to.equal(70)
+
+    expect(
+      calculatePlanCost(
+        new Decimal('999'),
+        chargeFunction,
+        rateFunction,
+      ).toNumber(),
+    ).to.equal(94.95)
+
+    expect(
+      calculatePlanCost(
+        new Decimal('1000'),
+        chargeFunction,
+        rateFunction,
+      ).toNumber(),
+    ).to.equal(65)
   })
 })
 
@@ -38,9 +66,9 @@ describe('kwhEstimatesMatchCostFunctions', () => {
   it('compares correctly', () => {
     expect(
       kwhEstimatesMatchCostFunctions(
-        new Decimal('30'),
-        new Decimal('50'),
-        new Decimal('60'),
+        new Decimal('0.14'),
+        new Decimal('0.065'),
+        new Decimal('0.0575'),
         chargeFunction,
         rateFunction,
       ),

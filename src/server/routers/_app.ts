@@ -1,9 +1,9 @@
 import superjson from '~/src/utils/superjson'
 import { createRouter } from '../createRouter'
-import { planRouter } from './plan'
+import listPlansRouter from './plan/listPlansRouter'
 
 export const appRouter = createRouter()
   .transformer(superjson)
-  .merge('plan.', planRouter)
+  .merge(listPlansRouter)
 
 export type AppRouter = typeof appRouter

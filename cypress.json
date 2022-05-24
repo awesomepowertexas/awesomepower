@@ -3,7 +3,8 @@
   "component": {
     "componentFolder": "src",
     "supportFile": "cypress/support/component.ts",
-    "testFiles": "**/*.spec.{js,jsx,ts,tsx}",
+    "testFiles": "**/__tests__/*.spec.tsx",
+    "video": false,
     "viewportHeight": 600,
     "viewportWidth": 800
   },
