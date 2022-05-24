@@ -6,8 +6,8 @@ env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
 
 jobs:
-  vitest:
-    name: Vitest
+  unit-integration:
+    name: Vitest unit/integration tests
     runs-on: ubuntu-latest
 
     services:
@@ -45,7 +45,7 @@ jobs:
 
       - run: pnpm build --no-lint
 
-      - run: pnpm start &
+      - run: pnpm nyc pnpm start &
 
       - run: pnpm vitest:run
 
@@ -54,11 +54,22 @@ jobs:
           rm -rf ./src
           mv ./src-tmp ./src
 
-      - name: Upload to Coveralls
+      - name: Upload unit tests to Coveralls
         if: ${{ always() }}
         uses: coverallsapp/github-action@1.1.3
         with:
           flag-name: unit
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./.nyc/coverage/lcov.info
+          parallel: true
+
+      - run: kill $(lsof -t -i:3000)
+
+      - name: Upload integration tests to Coveralls
+        if: ${{ always() }}
+        uses: coverallsapp/github-action@1.1.3
+        with:
+          flag-name: integration
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ./.nyc/coverage/lcov.info
           parallel: true
