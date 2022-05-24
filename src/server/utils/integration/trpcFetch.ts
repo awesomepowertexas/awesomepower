@@ -1,5 +1,8 @@
 import fetch from 'node-fetch'
 
+/**
+ * Helper function to request a trpc route during integration tests.
+ */
 export default async function trpcFetch({
   path,
   method,
@@ -23,10 +26,15 @@ export default async function trpcFetch({
     },
   )
 
-  type ResponseJson = {
-    result?: { data: { json: Record<any, any> } }
-    error?: { json: { message: string } }
-  }
+  type ResponseJson =
+    | {
+        result: { data: { json: Record<any, any> } }
+        error?: never
+      }
+    | {
+        result?: never
+        error: { json: { message: string } }
+      }
 
   let responseJson = (await response.json()) as ResponseJson | ResponseJson[]
 
@@ -34,13 +42,23 @@ export default async function trpcFetch({
     responseJson = responseJson[0]
   }
 
+  if (responseJson.error) {
+    try {
+      var errorMessageObject = JSON.parse(
+        responseJson.error.json.message,
+      ) as Record<any, any>
+    } catch (error) {
+      errorMessageObject = { message: responseJson.error.json.message }
+    }
+
+    return {
+      response,
+      error: errorMessageObject,
+    }
+  }
+
   return {
     response,
-    data: responseJson.result?.data.json,
-    error:
-      ![401, 403].some((status) => status === response.status) &&
-      responseJson.error
-        ? (JSON.parse(responseJson.error.json.message) as Record<any, any>)
-        : undefined,
+    data: responseJson.result.data.json,
   }
 }
