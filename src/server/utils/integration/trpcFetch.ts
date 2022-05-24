@@ -9,9 +9,7 @@ export default async function trpcFetch({
   method: 'POST' | 'GET'
   input?: object
 }) {
-  console.log(input)
   const inputString = JSON.stringify({ 0: { json: input ?? {} } })
-  console.log(inputString)
 
   const response = await fetch(
     `http://localhost:3000/api/trpc/${path}?batch=1${
@@ -25,8 +23,6 @@ export default async function trpcFetch({
     },
   )
 
-  console.log(response)
-
   type ResponseJson = {
     result?: { data: { json: Record<any, any> } }
     error?: { json: { message: string } }
@@ -37,6 +33,9 @@ export default async function trpcFetch({
   if (Array.isArray(responseJson)) {
     responseJson = responseJson[0]
   }
+
+  console.log(responseJson.error)
+  console.log(responseJson.error?.json.message)
 
   return {
     response,
