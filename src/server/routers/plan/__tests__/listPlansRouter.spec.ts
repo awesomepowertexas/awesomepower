@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { expect, test } from 'vitest'
 import trpcFetch from '~/src/server/utils/integration/trpcFetch'
 

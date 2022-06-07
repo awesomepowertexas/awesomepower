@@ -111,10 +111,10 @@ jobs:
           pnpm nyc instrument src --in-place
 
       - name: Cypress component tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
-          command: pnpm cypress run-ct
+          component: true
 
       - name: Replace src with true source
         if: ${{ always() }}
@@ -183,7 +183,7 @@ jobs:
           pnpm nyc instrument src --in-place
 
       - name: Cypress end-to-end tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           install: false
           build: pnpm build --no-lint

@@ -1,4 +1,4 @@
-import { mount } from '@cypress/react'
+import { mount } from 'cypress/react'
 import lodash from 'lodash'
 import Button from '../Button'
 
