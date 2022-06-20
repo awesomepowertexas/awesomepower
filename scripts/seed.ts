@@ -4,7 +4,7 @@ import lodash from 'lodash'
 import { PROVIDERS } from '~/data/providers'
 import { TDUS } from '~/data/tdus'
 import prisma from '~/prisma/client'
-import { getPtcPlans } from './admin/updatePlans/utils/ptc'
+import getPtcPlans from './admin/updatePlans/utils/getPtcPlans'
 
 async function seed() {
   const isProduction = process.env.APP_ENV === 'production'

@@ -2,7 +2,7 @@ import vision from '@google-cloud/vision'
 import axios from 'axios'
 import Canvas from 'canvas'
 import { JSDOM } from 'jsdom'
-import pdfjs from 'pdfjs-dist/legacy/build/pdf'
+import * as pdfjs from 'pdfjs-dist/legacy/build/pdf'
 
 type CanvasAndContext = {
   canvas: Canvas.Canvas
@@ -37,7 +37,7 @@ export class NodeCanvasFactory {
 /**
  * Return the Google Vision fullTextAnnotation of a remote PDF
  */
-export async function getPdfText(
+export default async function getPdfText(
   url: string,
 ): Promise<string | null | undefined> {
   // Request PDF

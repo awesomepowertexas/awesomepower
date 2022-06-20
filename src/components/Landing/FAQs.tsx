@@ -49,35 +49,36 @@ export default function FAQs() {
         </div>
 
         <FAQ
-          question={'How much does this website cost to use?'}
+          question={'Is this website still active?'}
           answer={
-            <p>
-              Awesome Power is free to use and always will be. In the future, we
-              may accept donations to cover server costs.
-            </p>
+            <>
+              <p>
+                While I try to keep this website up and running, I haven't had
+                the time to maintain the list of plans as much as I'd like.
+              </p>
+
+              <p className="mt-4">
+                At this point,{' '}
+                <a
+                  href="https://powertochoose.org"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold"
+                >
+                  Power to Choose
+                </a>{' '}
+                gives reasonably good results, to the point where Awesome Power
+                doesn't offer as much value as it used to. Generally, the
+                cheapest plans on Power to Choose will be similar to the ones
+                shown on Awesome Power.
+              </p>
+            </>
           }
         />
 
         <FAQ
-          question={'How is this different than Power To Choose?'}
-          answer={
-            <>
-              <p>
-                Power To Choose tells an incomplete story of plan pricing. Plans
-                are ranked in order of their cost at exactly 1000 kWh; however,
-                these results says nothing about the rest of the range of the
-                plan. If you use just 1 kWh over (or under) 1000 kWh, you may
-                pay twice as much as expected!
-              </p>
-
-              <p className="mt-4">
-                Awesome Power solves this by using a weighted average to
-                calculate plan costs. We take the average of a plan's cost
-                across a range of kWh, so that misleading price jumps will be
-                accounted for in the final pricing estimate.
-              </p>
-            </>
-          }
+          question={'How much does this website cost to use?'}
+          answer={<p>Awesome Power is free to use and always will be.</p>}
         />
 
         <FAQ
@@ -88,9 +89,9 @@ export default function FAQs() {
                 Yep! Awesome Power is open source; check out the codebase&nbsp;
                 <a
                   href="https://github.com/awesomepowertexas/awesomepower"
-                  className="font-bold"
                   target="_blank"
                   rel="noreferrer"
+                  className="font-bold"
                 >
                   here
                 </a>
@@ -144,37 +145,6 @@ export default function FAQs() {
                 We get the pricing profile for most of the plans this way, but
                 many EFLs are tough to interpret, and we have no choice but to
                 leave that plan off of the results.
-              </p>
-            </>
-          }
-        />
-
-        <FAQ
-          question={'What happened to the old Awesome Power website?'}
-          answer={
-            <>
-              <p>
-                In 2017, the creators of Awesome Power worked hard to improve
-                consumer access to energy usage data by attending several
-                meetings with the Public Utility Commission of Texas, and
-                helping to determine the requirements for the state’s data
-                access site, Smart Meter Texas.
-              </p>
-
-              <p className="mt-4">
-                Finally, on December 7, 2019, SMT 2.0 was unveiled.
-              </p>
-
-              <p className="mt-4">
-                Unfortunately, this meant that Awesome Power’s integration with
-                Smart Meter Texas was broken. So, we simplified Awesome Power to
-                only require a zip code to find the cheapest plans.
-              </p>
-
-              <p className="mt-4">
-                If there's anything else that hasn't been answered in these
-                FAQs, shoot me an email at michael@awesomepowertexas.com, and
-                I'll try to get back to you.
               </p>
             </>
           }
