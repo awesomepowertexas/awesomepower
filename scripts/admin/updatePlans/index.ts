@@ -5,13 +5,10 @@ import consola from 'consola'
 import lodash from 'lodash'
 import { PROVIDERS } from '~/data/providers'
 import prisma from '~/prisma/client'
-import { getPdfText } from './utils/pdf'
-import {
-  calculateRateEstimates,
-  kwhEstimatesMatchCostFunctions,
-} from './utils/plans'
-import type { PtcPlan } from './utils/ptc'
-import { getPtcPlans } from './utils/ptc'
+import getPdfText from './utils/getPdfText'
+import type { PtcPlan } from './utils/getPtcPlans'
+import getPtcPlans from './utils/getPtcPlans'
+import setChargeAndRateFunctions from './utils/setChargeAndRateFunctions'
 
 const { Prisma } = PrismaClient ?? require('@prisma/client')
 
@@ -101,9 +98,9 @@ async function updatePlans() {
           where: { ptcIdKey: plan.ptcIdKey },
           data: {
             ...plan,
-            eflNumbers: [],
-            chargeFunction: [],
-            rateFunction: [],
+            eflNumbers: undefined,
+            chargeFunction: undefined,
+            rateFunction: undefined,
             lowUsageRate: null,
             midUsageRate: null,
             highUsageRate: null,
@@ -115,7 +112,10 @@ async function updatePlans() {
 
   // Inactive plans
   for (const plan of await prisma.plan.findMany()) {
-    if (!ptcPlans.map((plan) => plan.ptcIdKey).includes(plan.ptcIdKey)) {
+    if (
+      !ptcPlans.map((plan) => plan.ptcIdKey).includes(plan.ptcIdKey) &&
+      plan.isActive
+    ) {
       await prisma.plan.update({
         where: { id: plan.id },
         data: { isActive: false },
@@ -126,15 +126,12 @@ async function updatePlans() {
   /**
    * Set EFL numbers
    */
-  consola.info('Setting EFL numbers...')
+  consola.info('Setting EFL numbers and charge/rate functions...')
 
-  const eflPlans = await prisma.plan.findMany({
+  const activePlans = await prisma.plan.findMany({
     where: {
       isActive: true,
       language: 'English',
-      eflNumbers: {
-        equals: Prisma.DbNull,
-      },
     },
     include: {
       tdu: true,
@@ -147,127 +144,53 @@ async function updatePlans() {
     },
   })
 
-  for (const [index, plan] of eflPlans.entries()) {
-    process.stdout.write(`Reading plan ${index + 1} of ${eflPlans.length}\r`)
-
-    // Set eflNumbers to [] so that we don't try to set it again
-    await prisma.plan.update({
-      where: { id: plan.id },
-      data: { eflNumbers: [] },
-    })
-
-    try {
-      var pdfText = await getPdfText(plan.factsUrl)
-
-      if (!pdfText) {
-        throw new Error()
-      }
-    } catch (error) {
-      continue
-    }
-
-    for (const startText of PROVIDERS.find((p) => p.name === plan.provider.name)
-      ?.startTexts ?? []) {
-      const eflNumbers = pdfText
-        .slice(pdfText.indexOf(startText))
-        .match(/\d+\.?\d*/g)
-        ?.map((num) => new Decimal(num).toDecimalPlaces(6))
-        .filter((num) => num.lessThan(new Decimal(10000)))
-
-      if (eflNumbers) {
-        await prisma.plan.update({
-          where: { id: plan.id },
-          data: {
-            eflNumbers: eflNumbers as unknown as PrismaType.JsonArray,
-          },
-        })
-      }
-    }
-  }
-
-  /**
-   * Set charge and rate functions
-   */
-  consola.info('Setting charge and rate functions...')
-
-  const costPlans = (
-    await prisma.plan.findMany({
-      where: {
-        isActive: true,
-        language: 'English',
-        NOT: {
-          eflNumbers: {
-            equals: Prisma.DbNull,
-          },
-        },
-      },
-      include: {
-        tdu: true,
-        provider: true,
-      },
-    })
-  ).filter(
-    (plan) =>
-      (plan.eflNumbers as PrismaType.JsonArray).length > 1 &&
-      (!plan.chargeFunction ||
-        !plan.rateFunction ||
-        !kwhEstimatesMatchCostFunctions(
-          plan.kwh500,
-          plan.kwh1000,
-          plan.kwh2000,
-          (plan.chargeFunction as PrismaType.JsonArray).map((piece) => ({
-            kwh: new Decimal((piece as { kwh: string; charge: string }).kwh),
-            charge: new Decimal(
-              (piece as { kwh: string; charge: string }).charge,
-            ),
-          })),
-          (plan.rateFunction as PrismaType.JsonArray).map((piece) => ({
-            kwh: new Decimal((piece as { kwh: string; rate: string }).kwh),
-            rate: new Decimal((piece as { kwh: string; rate: string }).rate),
-          })),
-        )),
-  )
-
-  for (const [index, plan] of costPlans.entries()) {
+  for (const [index, plan] of activePlans.entries()) {
     process.stdout.write(
-      `Calculating plan ${index + 1} of ${costPlans.length}\r`,
+      `Updating plan ${index + 1} of ${activePlans.length}\r`,
     )
 
-    for (const tduCharge of plan.tdu.charges as PrismaType.JsonArray) {
-      for (const tduRate of plan.tdu.rates as PrismaType.JsonArray) {
-        for (const func of PROVIDERS.find((p) => p.name === plan.provider.name)
-          ?.functions ?? []) {
-          try {
-            var { chargeFunction, rateFunction } = func(
-              (plan.eflNumbers as string[]).map((num) => new Decimal(num)),
-              new Decimal(tduCharge as string),
-              new Decimal(tduRate as string),
-            )
-          } catch (error) {
-            continue
-          }
+    // @ts-ignore
+    if (!plan.eflNumbers) {
+      try {
+        var pdfText = await getPdfText(plan.factsUrl)
 
-          if (
-            kwhEstimatesMatchCostFunctions(
-              plan.kwh500,
-              plan.kwh1000,
-              plan.kwh2000,
-              chargeFunction,
-              rateFunction,
-            )
-          ) {
-            await prisma.plan.update({
-              where: { id: plan.id },
-              data: {
-                chargeFunction:
-                  chargeFunction as unknown as PrismaType.JsonArray,
-                rateFunction: rateFunction as unknown as PrismaType.JsonArray,
-                ...calculateRateEstimates(chargeFunction, rateFunction),
-              },
-            })
-          }
+        if (!pdfText) {
+          throw new Error()
+        }
+      } catch (error) {
+        await prisma.plan.update({
+          where: { id: plan.id },
+          data: { eflNumbers: [] },
+        })
+
+        continue
+      }
+
+      for (const startText of PROVIDERS.find(
+        (p) => p.name === plan.provider.name,
+      )?.startTexts ?? []) {
+        const eflNumbers = pdfText
+          .slice(pdfText.indexOf(startText))
+          .match(/\d+\.?\d*/g)
+          ?.map((num) => new Decimal(num).toDecimalPlaces(6))
+          .filter((num) => num.lessThan(new Decimal(10000)))
+
+        if (eflNumbers && eflNumbers.length > 0) {
+          await prisma.plan.update({
+            where: { id: plan.id },
+            data: {
+              eflNumbers: eflNumbers as unknown as PrismaType.JsonArray,
+            },
+          })
         }
       }
+    }
+
+    if (
+      plan.eflNumbers &&
+      (plan.eflNumbers as unknown as Decimal[]).length > 0
+    ) {
+      await setChargeAndRateFunctions(plan)
     }
   }
 

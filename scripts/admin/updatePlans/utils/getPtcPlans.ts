@@ -42,7 +42,7 @@ export type PtcPlan = Plan & {
 }
 
 /* istanbul ignore next */
-export async function getPtcPlans() {
+export default async function getPtcPlans() {
   const response: { data: string } = await axios.get(
     'http://powertochoose.org/en-us/Plan/ExportToCsv',
   )
