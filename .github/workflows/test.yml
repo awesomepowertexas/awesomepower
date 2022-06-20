@@ -1,14 +1,20 @@
 name: Run Tests
 
-on: [push]
+on:
+  - push
 
 env:
   DATABASE_URL: mysql://user:password@localhost:3306/awesomepower
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   unit-integration:
     name: Vitest unit/integration tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     services:
       mysql:
@@ -84,6 +90,7 @@ jobs:
   component:
     name: Cypress component tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v3
@@ -134,6 +141,7 @@ jobs:
   e2e:
     name: Cypress end-to-end tests
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     strategy:
       # https://github.com/cypress-io/github-action#parallel
